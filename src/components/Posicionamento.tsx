@@ -1,36 +1,17 @@
 'use client'
 import { Stagger, Item } from '@/components/Reveal'
 import { Parallax } from '@/components/Parallax'
-
-const columns = [
-  {
-    label: 'Software house',
-    isAccent: false,
-    items: ['R$15k+ de entrada', 'Meses até ver resultado', 'Some após a entrega'],
-  },
-  {
-    label: 'cerne',
-    isAccent: true,
-    items: [
-      'Começa pequeno, entrega rápido',
-      'Você vê resultado em semanas',
-      'Continuamos perto depois',
-    ],
-  },
-  {
-    label: 'No-code / vibe coding',
-    isAccent: false,
-    items: [
-      'Parece funcionar no começo',
-      'Caixa-preta sem explicação',
-      'Quebra quando mais precisa',
-    ],
-  },
-]
+import { useTranslation } from '@/hooks/useTranslation'
 
 export function Posicionamento() {
+  const t = useTranslation()
+  const p = t.posicionamento
+
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--bg-surface)', padding: '128px 0' }}>
+    <section
+      className="relative overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-surface)', padding: 'clamp(64px, 12vw, 128px) 0' }}
+    >
       {/* Glow de fundo com parallax — move mais devagar = camada de profundidade */}
       <Parallax
         offset={80}
@@ -51,7 +32,7 @@ export function Posicionamento() {
             className="text-xs font-medium uppercase"
             style={{ color: 'var(--accent)', letterSpacing: '0.1em', marginBottom: '16px' }}
           >
-            Por que a cerne
+            {p.label}
           </Item>
           <Item
             as="h2"
@@ -60,19 +41,30 @@ export function Posicionamento() {
               color: 'var(--text-primary)',
               letterSpacing: '-0.02em',
               lineHeight: '1.1',
-              marginBottom: '64px',
+              marginBottom: '16px',
             }}
           >
-            Nem software house.
+            {p.headline1}
             <br />
-            Nem vibe coding.
+            {p.headline2}
+          </Item>
+          <Item
+            className="text-base max-w-lg"
+            style={{
+              color: 'var(--text-secondary)',
+              letterSpacing: '-0.01em',
+              lineHeight: '1.6',
+              marginBottom: '56px',
+            }}
+          >
+            {p.sub}
           </Item>
 
           <div
             className="grid md:grid-cols-3 gap-px rounded-2xl overflow-hidden"
             style={{ backgroundColor: 'var(--border)' }}
           >
-            {columns.map((col) => (
+            {p.columns.map((col) => (
               <Item
                 key={col.label}
                 deep

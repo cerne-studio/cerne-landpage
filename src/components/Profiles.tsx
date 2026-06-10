@@ -8,7 +8,7 @@ export function Profiles() {
   const p = t.profiles
 
   return (
-    <section id="profiles" className="relative overflow-hidden" style={{ backgroundColor: 'var(--bg-surface)', padding: '128px 0' }}>
+    <section id="profiles" className="relative overflow-hidden" style={{ backgroundColor: 'var(--bg-surface)', padding: 'clamp(64px, 12vw, 128px) 0' }}>
       {/* Glow de profundidade (canto oposto, parallax forte) */}
       <Parallax
         offset={120}

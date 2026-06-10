@@ -15,7 +15,7 @@ export function CTA() {
     <section
       id="contato"
       className="relative overflow-hidden"
-      style={{ backgroundColor: 'var(--bg-surface)', padding: '128px 0' }}
+      style={{ backgroundColor: 'var(--bg-surface)', padding: 'clamp(64px, 12vw, 128px) 0' }}
     >
       {/* Glow central com parallax + escala = sensação de "entrar" no foco */}
       <Parallax

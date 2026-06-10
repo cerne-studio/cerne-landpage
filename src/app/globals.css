@@ -96,6 +96,112 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Números tabulares — não tremem ao contar ─── */
+.tnum {
+  font-feature-settings: 'tnum';
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Hero: grade blueprint sutil ─── */
+.hero-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(120% 90% at 50% 30%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, black 30%, transparent 80%);
+}
+
+/* ─── Hero: ponto de status pulsante ─── */
+.hero-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--accent);
+  animation: heroDotPulse 2.2s ease-in-out infinite;
+}
+@keyframes heroDotPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow); }
+  50% { opacity: 0.65; box-shadow: 0 0 0 5px transparent; }
+}
+
+/* ─── Hero: linha de scroll ─── */
+.hero-scroll-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ─── Botão fantasma — feedback sem depender só de hover ─── */
+.ghost-button {
+  transition: border-color 150ms ease-out, color 150ms ease-out, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.ghost-button:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ghost-button:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+  }
+}
+
+/* ─── Botão fantasma sobre vídeo (hero) — cores fixas, vídeo é sempre escuro ─── */
+.ghost-button-dark {
+  transition: border-color 150ms ease-out, color 150ms ease-out, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.ghost-button-dark:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ghost-button-dark:hover {
+    border-color: var(--accent);
+    color: #f5f5f7;
+  }
+}
+
+/* ─── Marquee — movimento constante, CSS puro (fora da main thread) ─── */
+.marquee-track {
+  animation: marqueeScroll 36s linear infinite;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+.marquee-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ─── Craft: linha de acento que cresce no hover (clip-path → GPU) ─── */
+.craft-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--accent);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 240ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .craft-card:hover .craft-line {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 /* ─── Acessibilidade: conteúdo só para leitores de tela ─── */
 .sr-only {
   position: absolute;

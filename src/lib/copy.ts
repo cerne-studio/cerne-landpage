@@ -1,17 +1,57 @@
 export const copy = {
   pt: {
     nav: {
-      services: 'serviços',
+      services: 'Serviços',
       howItWorks: 'Como funciona',
       cta: 'Falar com a gente',
     },
     hero: {
       badge: 'Estúdio artesanal · Brasil',
       headline: 'O sistema que a sua empresa merecia ter.',
-      sub1: 'Mais rápido e mais acessível que uma software house.',
-      sub2: 'Mais sólido e seguro que no-code.',
-      sub3: 'Entregamos em até 8 semanas, com acabamento de estúdio de produto.',
-      cta: 'Quero um sistema assim →',
+      sub: 'Mais rápido e mais acessível que uma software house. Mais sólido e seguro que no-code. Entregue em até 8 semanas, com acabamento de estúdio de produto.',
+      cta: 'Quero um sistema assim',
+      ctaSecondary: 'Ver como funciona',
+      scrollHint: 'role para descer',
+    },
+    marquee: [
+      'CRM sob medida',
+      'Dashboards operacionais',
+      'Automação de processos',
+      'Portais para clientes',
+      'Integrações',
+      'Controle financeiro',
+      'Segurança e LGPD por padrão',
+    ],
+    posicionamento: {
+      label: 'Por que a cerne',
+      headline1: 'Nem software house.',
+      headline2: 'Nem vibe coding.',
+      sub: 'Existe um meio que o mercado deixou vazio. É onde a gente trabalha.',
+      columns: [
+        {
+          label: 'Software house',
+          isAccent: false,
+          items: ['R$15k+ de entrada', 'Meses até ver resultado', 'Some após a entrega'],
+        },
+        {
+          label: 'cerne',
+          isAccent: true,
+          items: [
+            'Começa pequeno, entrega rápido',
+            'Você vê resultado em semanas',
+            'Continuamos perto depois',
+          ],
+        },
+        {
+          label: 'No-code / vibe coding',
+          isAccent: false,
+          items: [
+            'Parece funcionar no começo',
+            'Caixa-preta sem explicação',
+            'Quebra quando mais precisa',
+          ],
+        },
+      ],
     },
     profiles: {
       label: 'Ponto de partida',
@@ -44,6 +84,68 @@ export const copy = {
           body: 'Funciona — mais ou menos. Trava, é feio, ninguém gosta de usar. E ninguém mais consegue mexer nele.',
           solution: 'Vendemos solidez e continuidade.',
         },
+      ],
+    },
+    prova: {
+      label: 'Prova viva',
+      headline: 'Já está rodando numa empresa de verdade. Todo dia.',
+      body: 'O sistema da Base Contábil, em Santos, está em produção desde a entrega — clientes, prazos e documentos num lugar só. E segue evoluindo todo mês, porque a gente não some depois.',
+      company: 'Base Contábil',
+      location: 'Santos · SP',
+      stats: [
+        { value: 8, suffix: ' semanas', label: 'do levantamento à entrega' },
+        { value: 3, suffix: ' fases', label: 'você vê funcionando antes de assinar' },
+        { value: 8, suffix: ' camadas', label: 'de qualidade em cada entrega' },
+      ],
+    },
+    servicos: {
+      label: 'O que entregamos',
+      headline1: 'Ferramentas para o',
+      headline2: 'dia a dia do negócio.',
+      sub: 'Cada sistema é feito para um problema real. Não um template com o seu logo em cima.',
+      items: [
+        {
+          titulo: 'CRMs e pipelines de venda',
+          descricao:
+            'Gestão de clientes, oportunidades e follow-up — sem depender de planilhas ou WhatsApp.',
+        },
+        {
+          titulo: 'Dashboards operacionais',
+          descricao:
+            'Números do negócio em tempo real, num único lugar que qualquer pessoa consegue entender.',
+        },
+        {
+          titulo: 'Automação de processos',
+          descricao: 'Tarefas repetitivas viram fluxos automáticos. O time foca no que importa.',
+        },
+        {
+          titulo: 'Portais para clientes',
+          descricao:
+            'Seu cliente acessa pedidos, documentos e atualizações sem precisar ligar pro atendimento.',
+        },
+        {
+          titulo: 'Integrações',
+          descricao: 'Conectamos o que você já usa: ERP, WhatsApp, planilhas, APIs de parceiros.',
+        },
+        {
+          titulo: 'Controle financeiro',
+          descricao: 'Contas, fluxo de caixa e relatórios para quem precisa tomar decisão.',
+        },
+      ],
+    },
+    craft: {
+      label: 'O acabamento',
+      headline: 'Oito camadas antes de chegar em você.',
+      sub: 'É o detalhe invisível que separa o profissional do amador. Cada entrega passa por todas — sem exceção.',
+      layers: [
+        { num: '01', name: 'Identidade', desc: 'A sua marca em cada tela, não um template.' },
+        { num: '02', name: 'Segurança', desc: 'Acesso controlado, dados protegidos.' },
+        { num: '03', name: 'LGPD', desc: 'Conformidade desde a primeira linha.' },
+        { num: '04', name: 'Estrutura', desc: 'Base sólida que aguenta crescer.' },
+        { num: '05', name: 'Interface', desc: 'Bonita de olhar, óbvia de usar.' },
+        { num: '06', name: 'Experiência', desc: 'Quem usa entende sem treinamento.' },
+        { num: '07', name: 'Testes', desc: 'Quebramos antes, para não quebrar com você.' },
+        { num: '08', name: 'Movimento', desc: 'Cada animação com propósito e física.' },
       ],
     },
     howItWorks: {
@@ -80,17 +182,7 @@ export const copy = {
     footer: {
       tagline: 'Feito sob medida. Acabado de verdade.',
       whatsapp: 'WhatsApp',
-      copy: '© 2026 Cerne',
-    },
-    hero3d: {
-      scrollHint: 'role para descer',
-      overlays: [
-        'Milhares de empresas.\nCada uma com o seu caos.',
-        'A sua está aí no meio.',
-        'Onde alguém ainda faz tudo na mão.',
-        'A gente transforma isso\nnum sistema.',
-        'O sistema que a sua\nempresa merecia ter.',
-      ],
+      copy: '© 2026 cerne',
     },
   },
 
@@ -103,10 +195,50 @@ export const copy = {
     hero: {
       badge: 'Artisan studio · Brazil',
       headline: 'The system your company deserved to have.',
-      sub1: 'Faster and more affordable than a software house.',
-      sub2: 'More solid and secure than no-code.',
-      sub3: 'Delivered in up to 8 weeks, with studio-grade craftsmanship.',
-      cta: 'I want a system like this →',
+      sub: 'Faster and more affordable than a software house. More solid and secure than no-code. Delivered in up to 8 weeks, with studio-grade craftsmanship.',
+      cta: 'I want a system like this',
+      ctaSecondary: 'See how it works',
+      scrollHint: 'scroll to explore',
+    },
+    marquee: [
+      'Custom CRM',
+      'Operational dashboards',
+      'Process automation',
+      'Client portals',
+      'Integrations',
+      'Financial control',
+      'Security & privacy by default',
+    ],
+    posicionamento: {
+      label: 'Why cerne',
+      headline1: 'Not a software house.',
+      headline2: 'Not vibe coding.',
+      sub: 'There is a middle the market left empty. That is where we work.',
+      columns: [
+        {
+          label: 'Software house',
+          isAccent: false,
+          items: ['R$15k+ upfront', 'Months before results', 'Gone after delivery'],
+        },
+        {
+          label: 'cerne',
+          isAccent: true,
+          items: [
+            'Starts small, delivers fast',
+            'You see results in weeks',
+            'We stay close afterwards',
+          ],
+        },
+        {
+          label: 'No-code / vibe coding',
+          isAccent: false,
+          items: [
+            'Seems to work at first',
+            'A black box with no answers',
+            'Breaks when you need it most',
+          ],
+        },
+      ],
     },
     profiles: {
       label: 'Starting point',
@@ -141,6 +273,68 @@ export const copy = {
         },
       ],
     },
+    prova: {
+      label: 'Living proof',
+      headline: 'Already running in a real company. Every day.',
+      body: 'The Base Contábil system, in Santos, has been in production since delivery — clients, deadlines and documents in one place. And it keeps evolving every month, because we don’t disappear afterwards.',
+      company: 'Base Contábil',
+      location: 'Santos · Brazil',
+      stats: [
+        { value: 8, suffix: ' weeks', label: 'from discovery to delivery' },
+        { value: 3, suffix: ' phases', label: 'you see it working before signing' },
+        { value: 8, suffix: ' layers', label: 'of quality in every delivery' },
+      ],
+    },
+    servicos: {
+      label: 'What we deliver',
+      headline1: 'Tools for the daily',
+      headline2: 'life of the business.',
+      sub: 'Every system is built for a real problem. Not a template with your logo on top.',
+      items: [
+        {
+          titulo: 'CRMs and sales pipelines',
+          descricao:
+            'Clients, opportunities and follow-ups — without depending on spreadsheets or WhatsApp.',
+        },
+        {
+          titulo: 'Operational dashboards',
+          descricao:
+            'Business numbers in real time, in one place anyone can understand.',
+        },
+        {
+          titulo: 'Process automation',
+          descricao: 'Repetitive tasks become automatic flows. The team focuses on what matters.',
+        },
+        {
+          titulo: 'Client portals',
+          descricao:
+            'Your client checks orders, documents and updates without calling support.',
+        },
+        {
+          titulo: 'Integrations',
+          descricao: 'We connect what you already use: ERP, WhatsApp, spreadsheets, partner APIs.',
+        },
+        {
+          titulo: 'Financial control',
+          descricao: 'Bills, cash flow and reports for whoever makes the decisions.',
+        },
+      ],
+    },
+    craft: {
+      label: 'The finish',
+      headline: 'Eight layers before it reaches you.',
+      sub: 'The invisible detail is what separates the professional from the amateur. Every delivery goes through all of them — no exceptions.',
+      layers: [
+        { num: '01', name: 'Identity', desc: 'Your brand on every screen, not a template.' },
+        { num: '02', name: 'Security', desc: 'Controlled access, protected data.' },
+        { num: '03', name: 'Privacy', desc: 'Compliance from the first line of code.' },
+        { num: '04', name: 'Structure', desc: 'A solid base that can grow.' },
+        { num: '05', name: 'Interface', desc: 'Beautiful to look at, obvious to use.' },
+        { num: '06', name: 'Experience', desc: 'People get it without training.' },
+        { num: '07', name: 'Testing', desc: 'We break it first, so it won’t break with you.' },
+        { num: '08', name: 'Motion', desc: 'Every animation with purpose and physics.' },
+      ],
+    },
     howItWorks: {
       label: 'The process',
       headline: 'From discovery to delivery: 8 weeks.',
@@ -168,24 +362,14 @@ export const copy = {
     },
     ctaFinal: {
       headline: "What's your company's starting point?",
-      sub: "The conversation is free. In one hour we understand what you have today and whether it makes sense to build something together.",
+      sub: 'The conversation is free. In one hour we understand what you have today and whether it makes sense to build something together.',
       cta: 'Talk to us on WhatsApp',
       note: 'We respond during business hours.',
     },
     footer: {
       tagline: 'Made to measure. Finished for real.',
       whatsapp: 'WhatsApp',
-      copy: '© 2026 Cerne',
-    },
-    hero3d: {
-      scrollHint: 'scroll to explore',
-      overlays: [
-        'Thousands of companies.\nEach with its own chaos.',
-        'Yours is somewhere in there.',
-        'Where someone still does it all by hand.',
-        'We turn that\ninto a system.',
-        'The system your\ncompany deserved to have.',
-      ],
+      copy: '© 2026 cerne',
     },
   },
 } as const
