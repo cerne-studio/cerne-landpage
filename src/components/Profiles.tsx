@@ -56,7 +56,7 @@ export function Profiles() {
           </Item>
 
           {/* 4 cards — profundidade intensa, stagger largo */}
-          <div className="grid md:grid-cols-2 gap-4 mb-16">
+          <div className="grid md:grid-cols-3 gap-4 mb-16">
             {p.cards.map((card) => (
               <Item
                 key={card.badge}

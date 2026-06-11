@@ -2,7 +2,13 @@
 import { Stagger, Item } from '@/components/Reveal'
 import { Parallax } from '@/components/Parallax'
 import { useTranslation } from '@/hooks/useTranslation'
+import { Logo } from '@/components/Logo'
 
+/**
+ * Posicionamento — comparativo dimensão a dimensão: Cerne × software house
+ * tradicional. Fecha com a punchline oficial: "o investimento é semelhante,
+ * a diferença está no resultado".
+ */
 export function Posicionamento() {
   const t = useTranslation()
   const p = t.posicionamento
@@ -12,7 +18,6 @@ export function Posicionamento() {
       className="relative overflow-hidden"
       style={{ backgroundColor: 'var(--bg-surface)', padding: 'clamp(64px, 12vw, 128px) 0' }}
     >
-      {/* Glow de fundo com parallax — move mais devagar = camada de profundidade */}
       <Parallax
         offset={80}
         aria-hidden
@@ -40,74 +45,103 @@ export function Posicionamento() {
             style={{
               color: 'var(--text-primary)',
               letterSpacing: '-0.02em',
-              lineHeight: '1.1',
+              lineHeight: 1.12,
               marginBottom: '16px',
             }}
           >
             {p.headline1}
             <br />
-            {p.headline2}
+            <span style={{ color: 'var(--accent)' }}>{p.headline2}</span>
           </Item>
           <Item
-            className="text-base max-w-lg"
+            className="text-base max-w-xl"
             style={{
               color: 'var(--text-secondary)',
               letterSpacing: '-0.01em',
-              lineHeight: '1.6',
+              lineHeight: 1.6,
               marginBottom: '56px',
             }}
           >
             {p.sub}
           </Item>
 
-          <div
-            className="grid md:grid-cols-3 gap-px rounded-2xl overflow-hidden"
-            style={{ backgroundColor: 'var(--border)' }}
-          >
-            {p.columns.map((col) => (
-              <Item
-                key={col.label}
-                deep
-                className="p-8 relative"
-                style={{ backgroundColor: col.isAccent ? 'var(--bg-elevated)' : 'var(--bg-surface)' }}
+          {/* Tabela comparativa */}
+          <Item deep className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+            {/* Cabeçalho */}
+            <div
+              className="hidden md:grid"
+              style={{
+                gridTemplateColumns: '140px 1fr 1fr',
+                backgroundColor: 'var(--bg-elevated)',
+                borderBottom: '1px solid var(--border)',
+              }}
+            >
+              <div className="p-5" />
+              <div className="p-5 flex items-center gap-2.5">
+                <Logo size={20} />
+                <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>
+                  cerne
+                </span>
+              </div>
+              <div className="p-5">
+                <span className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
+                  Software house tradicional
+                </span>
+              </div>
+            </div>
+
+            {p.rows.map((row, i) => (
+              <div
+                key={row.dim}
+                className="grid md:grid-cols-[140px_1fr_1fr]"
+                style={{
+                  backgroundColor: 'var(--bg-surface)',
+                  borderTop: i > 0 ? '1px solid var(--border)' : 'none',
+                }}
               >
-                {col.isAccent && (
-                  <div
-                    aria-hidden
-                    className="absolute top-0 left-1/2 -translate-x-1/2"
-                    style={{ width: '64px', height: '1px', backgroundColor: 'var(--accent)' }}
-                  />
-                )}
-                <p
-                  className="text-xs font-medium uppercase mb-6"
-                  style={{
-                    letterSpacing: '0.1em',
-                    color: col.isAccent ? 'var(--accent)' : 'var(--text-muted)',
-                  }}
-                >
-                  {col.label}
-                </p>
-                <ul className="space-y-4">
-                  {col.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span
-                        className="mt-0.5 shrink-0"
-                        style={{ color: col.isAccent ? 'var(--accent)' : 'var(--text-muted)' }}
-                      >
-                        {col.isAccent ? '✓' : '—'}
-                      </span>
-                      <span
-                        className="text-sm leading-relaxed"
-                        style={{ color: col.isAccent ? 'var(--text-primary)' : 'var(--text-muted)' }}
-                      >
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </Item>
+                <div className="px-5 pt-5 md:py-5">
+                  <span
+                    className="text-xs font-medium uppercase"
+                    style={{ letterSpacing: '0.08em', color: 'var(--text-muted)' }}
+                  >
+                    {row.dim}
+                  </span>
+                </div>
+                <div className="px-5 py-3 md:py-5 flex items-start gap-3">
+                  <span aria-hidden className="mt-0.5 shrink-0" style={{ color: 'var(--accent)' }}>
+                    ✓
+                  </span>
+                  <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>
+                    {row.cerne}
+                  </span>
+                </div>
+                <div className="px-5 pb-5 md:py-5 flex items-start gap-3">
+                  <span aria-hidden className="mt-0.5 shrink-0" style={{ color: 'var(--text-muted)' }}>
+                    —
+                  </span>
+                  <span className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                    {row.outro}
+                  </span>
+                </div>
+              </div>
             ))}
-          </div>
+          </Item>
+
+          <Item className="text-center" style={{ marginTop: '48px' }}>
+            <p
+              className="font-semibold mx-auto"
+              style={{
+                fontFamily: 'var(--font-display), sans-serif',
+                fontSize: 'clamp(1.2rem, 2.4vw, 1.6rem)',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.35,
+                color: 'var(--text-primary)',
+                maxWidth: '560px',
+              }}
+            >
+              {p.punchline}
+            </p>
+          </Item>
         </Stagger>
       </div>
     </section>

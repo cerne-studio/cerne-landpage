@@ -5,6 +5,7 @@ import { spring } from '@/lib/motion'
 import { useTheme } from '@/providers/ThemeProvider'
 import { useLang } from '@/providers/LanguageProvider'
 import { useTranslation } from '@/hooks/useTranslation'
+import { Logo } from '@/components/Logo'
 
 function MoonIcon() {
   return (
@@ -159,16 +160,17 @@ export function Nav() {
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a
           href="#"
-          className="text-lg font-normal no-underline"
+          className="flex items-center gap-2.5 text-lg font-medium no-underline"
           style={{ color: 'var(--text-primary)', letterSpacing: '-0.04em' }}
         >
+          <Logo size={26} />
           cerne
         </a>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
           <a
-            href="#servicos"
+            href="#setores"
             className="text-sm no-underline text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-150"
           >
             {t.nav.services}

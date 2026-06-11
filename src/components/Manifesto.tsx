@@ -18,6 +18,7 @@ export function Manifesto() {
 
   // tokens: *palavra* = destaque no acento
   const tokens = t.manifesto.text.split(' ')
+  const ringsOpacity = useTransform(scrollYProgress, [0.85, 1], [0, 1])
 
   return (
     <section
@@ -57,6 +58,38 @@ export function Manifesto() {
               </Word>
             ))}
           </p>
+
+          {/* Legenda dos três anéis — o conceito oficial do logo */}
+          <motion.div
+            className="flex flex-wrap gap-x-10 gap-y-4 mt-12"
+            style={{ opacity: ringsOpacity }}
+          >
+            {t.manifesto.rings.map((ring, i) => (
+              <div key={ring.name} className="flex items-center gap-3">
+                <span
+                  aria-hidden
+                  className="block rounded-full shrink-0"
+                  style={
+                    i === 2
+                      ? { width: 10, height: 10, backgroundColor: 'var(--accent)' }
+                      : {
+                          width: 18 - i * 4,
+                          height: 18 - i * 4,
+                          border: '1.5px solid var(--accent)',
+                          opacity: 1 - i * 0.25,
+                        }
+                  }
+                />
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                  <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>
+                    {ring.name}
+                  </span>
+                  {' — '}
+                  {ring.desc}
+                </p>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,12 +2,13 @@ import { Nav } from '@/components/Nav'
 import { Hero } from '@/components/Hero'
 import { Manifesto } from '@/components/Manifesto'
 import { Marquee } from '@/components/Marquee'
-import { Posicionamento } from '@/components/Posicionamento'
+import { Problema } from '@/components/Problema'
 import { Profiles } from '@/components/Profiles'
+import { Processo } from '@/components/Processo'
+import { Beneficios } from '@/components/Beneficios'
+import { Setores } from '@/components/Setores'
+import { Posicionamento } from '@/components/Posicionamento'
 import { Prova } from '@/components/Prova'
-import { Servicos } from '@/components/Servicos'
-import { Craft } from '@/components/Craft'
-import { HowItWorks } from '@/components/HowItWorks'
 import { CTA } from '@/components/CTA'
 import { Footer } from '@/components/Footer'
 
@@ -20,12 +21,13 @@ export default function Home() {
         <Hero />
         <Manifesto />
         <Marquee />
-        <Posicionamento />
+        <Problema />
         <Profiles />
+        <Processo />
+        <Beneficios />
+        <Setores />
+        <Posicionamento />
         <Prova />
-        <Servicos />
-        <Craft />
-        <HowItWorks />
         <CTA />
       </main>
       <Footer />

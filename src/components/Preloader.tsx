@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
+import { Logo } from '@/components/Logo'
 
 /** Duração total do preloader em ms (contador + respiro). */
 export const PRELOAD_MS = 1400
@@ -43,7 +44,7 @@ export function Preloader() {
           key="preloader"
           aria-hidden
           className="fixed inset-0 z-[300] flex items-center justify-center"
-          style={{ backgroundColor: '#0a0a0b' }}
+          style={{ backgroundColor: '#060708' }}
           exit={{
             y: '-100%',
             transition: { duration: 0.7, ease: [0.77, 0, 0.175, 1] },
@@ -70,7 +71,7 @@ export function Preloader() {
                 cx="90"
                 cy="90"
                 r="86"
-                stroke="#00d4b4"
+                stroke="#3dd9a0"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeDasharray="540.35"
@@ -85,7 +86,7 @@ export function Preloader() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-              className="font-semibold"
+              className="flex items-center gap-3 font-semibold"
               style={{
                 fontFamily: 'var(--font-display), var(--font-geist-sans), sans-serif',
                 fontSize: '28px',
@@ -93,6 +94,7 @@ export function Preloader() {
                 color: '#f5f5f7',
               }}
             >
+              <Logo size={30} />
               cerne
             </motion.span>
 

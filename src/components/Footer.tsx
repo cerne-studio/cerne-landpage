@@ -31,7 +31,7 @@ export function Footer() {
           <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>
             {f.tagline}
           </span>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <a
               href={WA_URL}
               target="_blank"
@@ -40,6 +40,13 @@ export function Footer() {
               style={{ color: 'var(--accent)' }}
             >
               {f.whatsapp}
+            </a>
+            <a
+              href={`mailto:${f.email}`}
+              className="text-sm no-underline hover:opacity-80 transition-opacity duration-150"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              {f.email}
             </a>
             <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
               {f.copy}

@@ -71,9 +71,13 @@ export function CTA() {
             >
               {c.cta}
             </MagneticButton>
-            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+            <a
+              href={`mailto:${c.note}`}
+              className="text-sm no-underline hover:opacity-80 transition-opacity duration-150"
+              style={{ color: 'var(--text-muted)' }}
+            >
               {c.note}
-            </p>
+            </a>
           </Item>
         </Stagger>
       </div>

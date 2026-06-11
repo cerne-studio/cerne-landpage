@@ -17,7 +17,7 @@ export default function OpengraphImage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#0a0a0b',
+          backgroundColor: '#060708',
           // Glow do acento + grid sutil
           backgroundImage:
             'radial-gradient(900px circle at 50% 42%, rgba(0,212,180,0.12), transparent 60%),' +
@@ -33,7 +33,7 @@ export default function OpengraphImage() {
             fontSize: 22,
             letterSpacing: 6,
             textTransform: 'uppercase',
-            color: '#00d4b4',
+            color: '#3dd9a0',
             marginBottom: 28,
           }}
         >
@@ -56,7 +56,7 @@ export default function OpengraphImage() {
 
         {/* Linha do acento */}
         <div
-          style={{ display: 'flex', width: 96, height: 4, backgroundColor: '#00d4b4', margin: '40px 0' }}
+          style={{ display: 'flex', width: 96, height: 4, backgroundColor: '#3dd9a0', margin: '40px 0' }}
         />
 
         {/* Tagline */}

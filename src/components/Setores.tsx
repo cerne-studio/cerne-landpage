@@ -1,34 +1,22 @@
 'use client'
 import { motion } from 'motion/react'
 import { Stagger, Item } from '@/components/Reveal'
-import { Parallax } from '@/components/Parallax'
 import { depthItem, spring } from '@/lib/motion'
 import { useTranslation } from '@/hooks/useTranslation'
 
-export function Servicos() {
+/**
+ * Setores — onde a cerne atua. 6 verticais do material oficial.
+ */
+export function Setores() {
   const t = useTranslation()
-  const s = t.servicos
+  const s = t.setores
 
   return (
     <section
-      id="servicos"
+      id="setores"
       className="relative overflow-hidden"
       style={{ backgroundColor: 'var(--bg-base)', padding: 'clamp(64px, 12vw, 128px) 0' }}
     >
-      {/* Glow de profundidade */}
-      <Parallax
-        offset={100}
-        aria-hidden
-        className="absolute pointer-events-none"
-        style={{
-          bottom: '5%',
-          left: '20%',
-          width: '650px',
-          height: '650px',
-          background: 'radial-gradient(circle, var(--accent-subtle) 0%, transparent 62%)',
-        }}
-      />
-
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <Stagger wide>
           <Item
@@ -43,7 +31,7 @@ export function Servicos() {
             style={{
               color: 'var(--text-primary)',
               letterSpacing: '-0.02em',
-              lineHeight: '1.1',
+              lineHeight: 1.1,
               marginBottom: '16px',
             }}
           >
@@ -56,7 +44,7 @@ export function Servicos() {
             style={{
               color: 'var(--text-secondary)',
               letterSpacing: '-0.01em',
-              lineHeight: '1.6',
+              lineHeight: 1.6,
               marginBottom: '64px',
             }}
           >
@@ -64,36 +52,43 @@ export function Servicos() {
           </Item>
 
           <div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden mb-12"
             style={{ backgroundColor: 'var(--border)' }}
           >
-            {s.items.map((item, i) => (
+            {s.items.map((item) => (
               <motion.div
-                key={item.titulo}
+                key={item.title}
                 variants={depthItem}
                 whileHover={{ y: -4 }}
                 transition={spring.smooth}
                 style={{ transformStyle: 'preserve-3d' }}
                 className="p-8 bg-[var(--bg-surface)] hover:bg-[var(--bg-elevated)] transition-colors duration-200"
               >
-                <p
-                  className="text-xs font-medium tnum mb-5"
-                  style={{ color: 'var(--text-muted)', letterSpacing: '0.08em' }}
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </p>
                 <h3
                   className="text-base font-semibold mb-3"
                   style={{ color: 'var(--text-primary)', letterSpacing: '-0.01em' }}
                 >
-                  {item.titulo}
+                  {item.title}
                 </h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                  {item.descricao}
+                  {item.desc}
                 </p>
               </motion.div>
             ))}
           </div>
+
+          <Item
+            className="text-center text-base"
+            style={{
+              color: 'var(--text-muted)',
+              letterSpacing: '-0.01em',
+              lineHeight: 1.6,
+              maxWidth: '560px',
+              margin: '0 auto',
+            }}
+          >
+            {s.closing}
+          </Item>
         </Stagger>
       </div>
     </section>

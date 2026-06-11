@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
-/* ─── Default tokens (dark — aplica antes do JS hidratrar) ─── */
+/* ─── Default tokens (dark — aplica antes do JS hidratrar) ───
+   Paleta extraída do material oficial: preto profundo + mint do logo. */
 :root {
-  --bg-base:        #0a0a0b;
-  --bg-surface:     #111113;
-  --bg-elevated:    #1a1a1f;
+  --bg-base:        #060708;
+  --bg-surface:     #0b0d0e;
+  --bg-elevated:    #131619;
   --border:         rgba(255,255,255,0.08);
   --border-strong:  rgba(255,255,255,0.15);
-  --text-primary:   #f0f0f2;
-  --text-secondary: #8b8b9a;
-  --text-muted:     #5a5a6a;
-  --accent:         #00d4b4;
-  --accent-hover:   #00bfa3;
-  --accent-glow:    rgba(0,212,180,0.20);
-  --accent-subtle:  rgba(0,212,180,0.04);
-  --nav-bg:         rgba(10,10,11,0.85);
+  --text-primary:   #f0f2f1;
+  --text-secondary: #8b9a94;
+  --text-muted:     #5a6a64;
+  --accent:         #3dd9a0;
+  --accent-hover:   #2cc78f;
+  --accent-glow:    rgba(61,217,160,0.22);
+  --accent-subtle:  rgba(61,217,160,0.05);
+  --nav-bg:         rgba(6,7,8,0.85);
   --grid-line:      rgba(255,255,255,0.025);
   --ghost-number:   rgba(255,255,255,0.05);
   --scroll-line:    rgba(255,255,255,0.3);
@@ -23,19 +24,19 @@
 
 /* ─── Dark theme (explícito) ─── */
 [data-theme="dark"] {
-  --bg-base:        #0a0a0b;
-  --bg-surface:     #111113;
-  --bg-elevated:    #1a1a1f;
+  --bg-base:        #060708;
+  --bg-surface:     #0b0d0e;
+  --bg-elevated:    #131619;
   --border:         rgba(255,255,255,0.08);
   --border-strong:  rgba(255,255,255,0.15);
-  --text-primary:   #f0f0f2;
-  --text-secondary: #8b8b9a;
-  --text-muted:     #5a5a6a;
-  --accent:         #00d4b4;
-  --accent-hover:   #00bfa3;
-  --accent-glow:    rgba(0,212,180,0.20);
-  --accent-subtle:  rgba(0,212,180,0.04);
-  --nav-bg:         rgba(10,10,11,0.85);
+  --text-primary:   #f0f2f1;
+  --text-secondary: #8b9a94;
+  --text-muted:     #5a6a64;
+  --accent:         #3dd9a0;
+  --accent-hover:   #2cc78f;
+  --accent-glow:    rgba(61,217,160,0.22);
+  --accent-subtle:  rgba(61,217,160,0.05);
+  --nav-bg:         rgba(6,7,8,0.85);
   --grid-line:      rgba(255,255,255,0.025);
   --ghost-number:   rgba(255,255,255,0.05);
   --scroll-line:    rgba(255,255,255,0.3);
@@ -52,10 +53,10 @@
   --text-primary:   #0d0d0e;
   --text-secondary: #555560;
   --text-muted:     #999aaa;
-  --accent:         #007a68;
-  --accent-hover:   #006657;
-  --accent-glow:    rgba(0,122,104,0.12);
-  --accent-subtle:  rgba(0,122,104,0.04);
+  --accent:         #0b8a60;
+  --accent-hover:   #097a54;
+  --accent-glow:    rgba(11,138,96,0.12);
+  --accent-subtle:  rgba(11,138,96,0.04);
   --nav-bg:         rgba(244,244,241,0.85);
   --grid-line:      rgba(0,0,0,0.04);
   --ghost-number:   rgba(0,0,0,0.05);

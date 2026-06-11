@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { MagneticButton } from '@/components/MagneticButton'
 import { RingsCanvas } from '@/components/RingsCanvas'
+import { Logo } from '@/components/Logo'
 import { PRELOAD_MS } from '@/components/Preloader'
 
 const WA_URL =
@@ -78,7 +79,7 @@ export function Hero() {
             marginBottom: '20px',
           }}
         >
-          <span className="hero-dot" aria-hidden />
+          <Logo size={15} />
           {h.badge}
         </motion.p>
 
@@ -158,7 +159,7 @@ export function Hero() {
             className="inline-flex items-center justify-center font-semibold text-base no-underline"
             style={{
               backgroundColor: 'var(--accent)',
-              color: '#0a0a0b',
+              color: '#060708',
               padding: '14px 28px',
               borderRadius: '12px',
               minHeight: '48px',
