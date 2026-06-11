@@ -10,17 +10,8 @@ export const copy = {
       headline: 'O sistema certo para o processo que você já tem.',
       sub: 'Sistemas internos feitos para o jeito que o seu negócio funciona. Transformamos processos desorganizados em operações claras, estruturadas e escaláveis.',
       cta: 'Vamos conversar',
-      ctaSecondary: 'Por que "cerne"?',
+      ctaSecondary: 'Como funciona',
       scrollHint: 'role para descer',
-    },
-    manifesto: {
-      label: 'O nome',
-      text: 'Cerne é o *núcleo* da madeira — a parte mais densa da árvore, a que sustenta tudo por *séculos.* É o que a gente constrói para a sua empresa: o *sistema* que estrutura, o *processo* que move, o *núcleo* que realmente importa.',
-      rings: [
-        { name: 'Sistema', desc: 'a estrutura que sustenta' },
-        { name: 'Processo', desc: 'o fluxo que gera movimento' },
-        { name: 'Núcleo', desc: 'o que realmente importa' },
-      ],
     },
     marquee: [
       'Sistemas sob medida',
@@ -34,19 +25,17 @@ export const copy = {
     problema: {
       label: 'O problema',
       headline: 'O caos custa mais caro do que parece.',
-      sub: 'Cada falha aqui vira atraso, retrabalho e perda de dinheiro.',
-      questions: [
-        'Quantas vezes você já explicou um processo pra um funcionário novo e percebeu que ele só existia na cabeça de alguém?',
-        'Quantas vezes uma informação se perdeu no WhatsApp, numa planilha ou num papel?',
-        'Quantas vezes você pagou por um sistema que prometia resolver tudo — e a sua equipe ainda assim não usou?',
+      sub: 'Informação espalhada, processo na cabeça de alguém, retrabalho todo dia. Cada falha vira atraso e perda de dinheiro.',
+      chaos: [
+        'WhatsApp',
+        'Planilhas quebradas',
+        'Papéis que somem',
+        'E-mail sem controle',
+        'Sistema que não serve',
+        'Na cabeça de alguém',
       ],
       punchline1: 'O problema não é a falta de ferramenta.',
       punchline2: 'É a falta de estrutura.',
-      equipe: {
-        headline: 'E o problema também não é a sua equipe.',
-        body: 'Ela está tentando fazer o processo funcionar com ferramentas que nunca foram feitas pra ele. Quando a ferramenta não encaixa no fluxo real, a equipe cria contornos: o WhatsApp paralelo, a planilha que só o João sabe mexer, o caderno na gaveta.',
-        closing: 'O sistema existe, mas o caos continua.',
-      },
       hoje: {
         label: 'Como é hoje',
         items: [
@@ -203,28 +192,28 @@ export const copy = {
       rows: [
         {
           dim: 'Foco',
-          cerne: 'Entender o seu processo e gerar resultado para o negócio',
-          outro: 'Desenvolver software seguindo um escopo fechado',
+          cerne: 'Entender o seu processo e gerar resultado',
+          outro: 'Cumprir um escopo fechado',
         },
         {
           dim: 'Processo',
-          cerne: 'Metodologia própria, iterativa e focada em entregas rápidas e contínuas',
-          outro: 'Processos lentos, lineares e cheios de etapas que não geram valor direto',
+          cerne: 'Entregas rápidas e contínuas',
+          outro: 'Lento, linear, cheio de etapas',
         },
         {
           dim: 'Comunicação',
-          cerne: 'Transparente, direta e constante — você acompanha tudo em tempo real',
-          outro: 'Comunicação formal e travada, com meses sem ver resultado',
+          cerne: 'Direta e em tempo real',
+          outro: 'Formal e travada por meses',
         },
         {
           dim: 'Velocidade',
-          cerne: 'Sistema no ar em até 8 semanas, com valor entregue desde o início',
-          outro: 'Mais de 3 meses para a primeira versão utilizável',
+          cerne: 'No ar em até 8 semanas',
+          outro: '3+ meses para a primeira versão',
         },
         {
           dim: 'Resultado',
-          cerne: 'Sistema que a equipe usa, porque nasceu falando a língua do negócio',
-          outro: 'Sistema genérico que exige adaptação de quem usa',
+          cerne: 'Sistema que a equipe usa de verdade',
+          outro: 'Sistema genérico que força adaptação',
         },
       ],
     },
@@ -253,17 +242,8 @@ export const copy = {
       headline: 'The right system for the process you already have.',
       sub: 'Internal systems built around the way your business works. We turn disorganized processes into clear, structured, scalable operations.',
       cta: "Let's talk",
-      ctaSecondary: 'Why "cerne"?',
+      ctaSecondary: 'How it works',
       scrollHint: 'scroll to explore',
-    },
-    manifesto: {
-      label: 'The name',
-      text: 'Cerne is Portuguese for *heartwood* — the densest core of the tree, the part that holds everything up for *centuries.* That is what we build for your company: the *system* that structures, the *process* that moves, the *core* that really matters.',
-      rings: [
-        { name: 'System', desc: 'the structure that sustains' },
-        { name: 'Process', desc: 'the flow that creates movement' },
-        { name: 'Core', desc: 'what really matters' },
-      ],
     },
     marquee: [
       'Custom-built systems',
@@ -277,19 +257,17 @@ export const copy = {
     problema: {
       label: 'The problem',
       headline: 'Chaos costs more than it looks.',
-      sub: 'Every failure here becomes delay, rework and lost money.',
-      questions: [
-        'How many times have you explained a process to a new employee and realized it only existed in someone’s head?',
-        'How many times has information been lost in WhatsApp, a spreadsheet or a piece of paper?',
-        'How many times have you paid for a system that promised everything — and your team still didn’t use it?',
+      sub: 'Scattered information, processes living in someone’s head, rework every day. Every failure becomes delay and lost money.',
+      chaos: [
+        'WhatsApp',
+        'Broken spreadsheets',
+        'Papers that vanish',
+        'Uncontrolled e-mail',
+        'Software that doesn’t fit',
+        'In someone’s head',
       ],
       punchline1: 'The problem is not the lack of tools.',
       punchline2: 'It is the lack of structure.',
-      equipe: {
-        headline: 'And the problem is not your team either.',
-        body: 'They are trying to make the process work with tools that were never built for it. When the tool doesn’t fit the real flow, the team creates workarounds: the parallel WhatsApp group, the spreadsheet only João knows how to use, the notebook in the drawer.',
-        closing: 'The system exists, but the chaos continues.',
-      },
       hoje: {
         label: 'How it is today',
         items: [
@@ -446,28 +424,28 @@ export const copy = {
       rows: [
         {
           dim: 'Focus',
-          cerne: 'Understanding your process and generating results for the business',
-          outro: 'Building software against a fixed scope',
+          cerne: 'Understanding your process and delivering results',
+          outro: 'Fulfilling a fixed scope',
         },
         {
           dim: 'Process',
-          cerne: 'Our own methodology — iterative, focused on fast, continuous delivery',
-          outro: 'Slow, linear processes full of steps that add no direct value',
+          cerne: 'Fast, continuous deliveries',
+          outro: 'Slow, linear, full of steps',
         },
         {
           dim: 'Communication',
-          cerne: 'Transparent, direct and constant — you follow everything in real time',
-          outro: 'Formal, slow communication, with months without seeing results',
+          cerne: 'Direct and in real time',
+          outro: 'Formal and stalled for months',
         },
         {
           dim: 'Speed',
-          cerne: 'System live in up to 8 weeks, delivering value from the start',
-          outro: 'More than 3 months for the first usable version',
+          cerne: 'Live in up to 8 weeks',
+          outro: '3+ months for the first version',
         },
         {
           dim: 'Result',
-          cerne: 'A system your team actually uses, born speaking the business’s language',
-          outro: 'A generic system that forces users to adapt',
+          cerne: 'A system your team actually uses',
+          outro: 'A generic system that forces adaptation',
         },
       ],
     },

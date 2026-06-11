@@ -5,7 +5,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { MagneticButton } from '@/components/MagneticButton'
 import { RingsCanvas } from '@/components/RingsCanvas'
 import { Logo } from '@/components/Logo'
-import { PRELOAD_MS } from '@/components/Preloader'
+import { useIntroDone } from '@/components/Intro'
 
 const WA_URL =
   'https://wa.me/55XXXXXXXXXX?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Cerne'
@@ -13,19 +13,18 @@ const WA_URL =
 /** Easing forte — built-ins são fracos demais (emil-design-eng). */
 const EASE_OUT = [0.23, 1, 0.32, 1] as const
 
-/** Delays após o preloader sair: kicker → wordmark → título → CTA. */
-const BASE = PRELOAD_MS / 1000 - 0.25
-const DELAY = { badge: BASE + 0.15, mark: BASE + 0.3, title: BASE + 0.75, cta: BASE + 1.05 }
+/** Delays após a intro de vídeo liberar a tela. */
+const DELAY = { badge: 0.1, mark: 0.25, title: 0.7, cta: 1.0 }
 
 /**
  * Hero — o wordmark monumental sobre os anéis de crescimento generativos.
- * Cada letra de "cerne" sobe de um mask (clip) com stagger; os anéis
- * crescem do centro como numa árvore real. Zero assets externos.
+ * As animações só disparam quando a intro de vídeo termina (useIntroDone).
  */
 export function Hero() {
   const t = useTranslation()
   const h = t.hero
   const reduce = !!useReducedMotion()
+  const done = useIntroDone()
   const ref = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
@@ -41,7 +40,7 @@ export function Hero() {
       className="relative overflow-hidden flex items-center justify-center"
       style={{ minHeight: '100svh', backgroundColor: 'var(--bg-base)' }}
     >
-      {/* Anéis de crescimento — o cerne da árvore, vivo */}
+      {/* Anéis de crescimento — o símbolo da marca, vivo */}
       <motion.div className="absolute inset-0" style={{ y: ringsY }}>
         <RingsCanvas className="w-full h-full" growSeconds={5.5} />
       </motion.div>
@@ -61,12 +60,12 @@ export function Hero() {
         className="relative z-10 w-full max-w-6xl mx-auto px-6 text-center"
         style={{ y: contentY, opacity: fade, paddingTop: '96px', paddingBottom: '80px' }}
       >
-        {/* Kicker */}
+        {/* Kicker com o logo oficial */}
         <motion.p
           initial={reduce ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={done ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: DELAY.badge, ease: EASE_OUT }}
-          className="inline-flex items-center gap-2 text-xs font-medium"
+          className="inline-flex items-center gap-2.5 text-xs font-medium"
           style={{
             color: 'var(--text-secondary)',
             border: '1px solid var(--border)',
@@ -79,22 +78,18 @@ export function Hero() {
             marginBottom: '20px',
           }}
         >
-          <Logo size={15} />
+          <Logo size={18} />
           {h.badge}
         </motion.p>
 
         {/* Wordmark monumental — cada letra sobe de um mask */}
-        <div
-          aria-hidden
-          className="flex justify-center select-none"
-          style={{ marginBottom: '8px' }}
-        >
+        <div aria-hidden className="flex justify-center select-none" style={{ marginBottom: '8px' }}>
           {letters.map((letter, i) => (
             <span key={i} className="overflow-hidden inline-block" style={{ padding: '0.04em 0' }}>
               <motion.span
                 className="inline-block font-semibold"
                 initial={reduce ? false : { y: '108%' }}
-                animate={{ y: '0%' }}
+                animate={done ? { y: '0%' } : {}}
                 transition={{ duration: 0.9, delay: DELAY.mark + i * 0.07, ease: EASE_OUT }}
                 style={{
                   fontFamily: 'var(--font-display), var(--font-geist-sans), sans-serif',
@@ -111,10 +106,10 @@ export function Hero() {
           ))}
         </div>
 
-        {/* Headline real (h1) — clareza cirúrgica, uma linha */}
+        {/* Headline real (h1) — a tagline oficial */}
         <motion.h1
           initial={reduce ? false : { opacity: 0, y: 20, filter: 'blur(6px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          animate={done ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.65, delay: DELAY.title, ease: EASE_OUT }}
           className="font-medium mx-auto"
           style={{
@@ -131,7 +126,7 @@ export function Hero() {
 
         <motion.p
           initial={reduce ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={done ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, delay: DELAY.title + 0.12, ease: EASE_OUT }}
           className="text-sm md:text-base mx-auto"
           style={{
@@ -147,7 +142,7 @@ export function Hero() {
 
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={done ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, delay: DELAY.cta, ease: EASE_OUT }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
@@ -168,7 +163,7 @@ export function Hero() {
             {h.cta} →
           </MagneticButton>
           <a
-            href="#manifesto"
+            href="#processo"
             className="ghost-button inline-flex items-center justify-center text-base font-medium no-underline"
             style={{
               color: 'var(--text-secondary)',

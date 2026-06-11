@@ -4,7 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import { LanguageProvider } from '@/providers/LanguageProvider'
 import { MotionProvider } from '@/components/MotionProvider'
-import { Preloader } from '@/components/Preloader'
+import { IntroProvider } from '@/components/Intro'
 import { Cursor } from '@/components/Cursor'
 
 const geist = Geist({
@@ -22,14 +22,14 @@ const sora = Sora({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cerne.studio'),
-  title: 'cerne — sistemas internos para PMEs',
+  metadataBase: new URL('https://cerne.com.br'),
+  title: 'cerne — o sistema certo para o processo que você já tem',
   description:
-    'Construímos ferramentas internas sob medida para PMEs brasileiras. CRMs, dashboards, automações — com velocidade e acabamento de produto sério.',
+    'Sistemas internos feitos para o jeito que o seu negócio funciona. Transformamos processos desorganizados em operações claras, estruturadas e escaláveis.',
   openGraph: {
-    title: 'cerne — sistemas internos para PMEs',
+    title: 'cerne — o sistema certo para o processo que você já tem',
     description:
-      'Ferramentas internas sob medida. Velocidade de produto novo, rigor de software sério.',
+      'Sistemas internos feitos para o jeito que o seu negócio funciona.',
     type: 'website',
   },
 }
@@ -50,9 +50,10 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <MotionProvider>
-              <Preloader />
-              <Cursor />
-              {children}
+              <IntroProvider>
+                <Cursor />
+                {children}
+              </IntroProvider>
             </MotionProvider>
           </LanguageProvider>
         </ThemeProvider>

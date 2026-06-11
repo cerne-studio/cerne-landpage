@@ -191,6 +191,24 @@ h1, h2 {
   .marquee-track { animation: none; }
 }
 
+/* ─── ChaosMap: chips flutuando + linhas fluindo para o núcleo ─── */
+.chaos-chip {
+  animation: chaosFloat 5.5s ease-in-out infinite;
+}
+@keyframes chaosFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+.chaos-line {
+  animation: chaosFlow 3s linear infinite;
+}
+@keyframes chaosFlow {
+  to { stroke-dashoffset: -7.6; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chaos-chip, .chaos-line { animation: none; }
+}
+
 /* ─── Craft: linha de acento que cresce no hover (clip-path → GPU) ─── */
 .craft-line {
   position: absolute;

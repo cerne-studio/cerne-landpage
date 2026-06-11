@@ -5,9 +5,8 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { Logo } from '@/components/Logo'
 
 /**
- * Posicionamento — comparativo dimensão a dimensão: Cerne × software house
- * tradicional. Fecha com a punchline oficial: "o investimento é semelhante,
- * a diferença está no resultado".
+ * Posicionamento — VS visual: cerne de um lado, software house do outro,
+ * com o badge "VS" no meio. Frases curtas, contraste imediato.
  */
 export function Posicionamento() {
   const t = useTranslation()
@@ -31,112 +30,123 @@ export function Posicionamento() {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
         <Stagger>
           <Item
-            className="text-xs font-medium uppercase"
+            className="text-xs font-medium uppercase text-center"
             style={{ color: 'var(--accent)', letterSpacing: '0.1em', marginBottom: '16px' }}
           >
             {p.label}
           </Item>
           <Item
             as="h2"
-            className="text-4xl md:text-5xl font-semibold"
+            className="text-4xl md:text-5xl font-semibold text-center"
             style={{
               color: 'var(--text-primary)',
               letterSpacing: '-0.02em',
               lineHeight: 1.12,
-              marginBottom: '16px',
+              marginBottom: '56px',
             }}
           >
             {p.headline1}
             <br />
             <span style={{ color: 'var(--accent)' }}>{p.headline2}</span>
           </Item>
-          <Item
-            className="text-base max-w-xl"
-            style={{
-              color: 'var(--text-secondary)',
-              letterSpacing: '-0.01em',
-              lineHeight: 1.6,
-              marginBottom: '56px',
-            }}
-          >
-            {p.sub}
-          </Item>
 
-          {/* Tabela comparativa */}
-          <Item deep className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-            {/* Cabeçalho */}
-            <div
-              className="hidden md:grid"
-              style={{
-                gridTemplateColumns: '140px 1fr 1fr',
-                backgroundColor: 'var(--bg-elevated)',
-                borderBottom: '1px solid var(--border)',
-              }}
-            >
-              <div className="p-5" />
-              <div className="p-5 flex items-center gap-2.5">
-                <Logo size={20} />
-                <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>
-                  cerne
-                </span>
+          {/* VS layout */}
+          <Item deep className="relative">
+            <div className="grid md:grid-cols-2 gap-3 md:gap-5">
+              {/* cerne */}
+              <div
+                className="rounded-2xl p-7 md:p-8 relative overflow-hidden"
+                style={{
+                  backgroundColor: 'var(--bg-elevated)',
+                  border: '1px solid var(--accent-glow)',
+                  boxShadow: '0 0 60px var(--accent-subtle)',
+                }}
+              >
+                <div
+                  aria-hidden
+                  className="absolute top-0 left-0 right-0"
+                  style={{ height: '2px', background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }}
+                />
+                <div className="flex items-center gap-2.5 mb-7">
+                  <Logo size={24} />
+                  <span className="text-base font-semibold" style={{ color: 'var(--accent)' }}>
+                    cerne
+                  </span>
+                </div>
+                <ul className="space-y-4">
+                  {p.rows.map((row) => (
+                    <li key={row.dim} className="flex items-start gap-3">
+                      <span aria-hidden className="mt-0.5 shrink-0" style={{ color: 'var(--accent)' }}>
+                        ✓
+                      </span>
+                      <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>
+                        {row.cerne}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="p-5">
-                <span className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
-                  Software house tradicional
-                </span>
+
+              {/* software house */}
+              <div
+                className="rounded-2xl p-7 md:p-8"
+                style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+              >
+                <div className="flex items-center mb-7" style={{ minHeight: 24 }}>
+                  <span className="text-base font-medium" style={{ color: 'var(--text-muted)' }}>
+                    Software house tradicional
+                  </span>
+                </div>
+                <ul className="space-y-4">
+                  {p.rows.map((row) => (
+                    <li key={row.dim} className="flex items-start gap-3">
+                      <span aria-hidden className="mt-0.5 shrink-0" style={{ color: 'var(--text-muted)' }}>
+                        ✕
+                      </span>
+                      <span className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                        {row.outro}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
-            {p.rows.map((row, i) => (
-              <div
-                key={row.dim}
-                className="grid md:grid-cols-[140px_1fr_1fr]"
-                style={{
-                  backgroundColor: 'var(--bg-surface)',
-                  borderTop: i > 0 ? '1px solid var(--border)' : 'none',
-                }}
-              >
-                <div className="px-5 pt-5 md:py-5">
-                  <span
-                    className="text-xs font-medium uppercase"
-                    style={{ letterSpacing: '0.08em', color: 'var(--text-muted)' }}
-                  >
-                    {row.dim}
-                  </span>
-                </div>
-                <div className="px-5 py-3 md:py-5 flex items-start gap-3">
-                  <span aria-hidden className="mt-0.5 shrink-0" style={{ color: 'var(--accent)' }}>
-                    ✓
-                  </span>
-                  <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-                    {row.cerne}
-                  </span>
-                </div>
-                <div className="px-5 pb-5 md:py-5 flex items-start gap-3">
-                  <span aria-hidden className="mt-0.5 shrink-0" style={{ color: 'var(--text-muted)' }}>
-                    —
-                  </span>
-                  <span className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                    {row.outro}
-                  </span>
-                </div>
-              </div>
-            ))}
+            {/* badge VS central */}
+            <div
+              aria-hidden
+              className="hidden md:flex absolute items-center justify-center font-semibold rounded-full"
+              style={{
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 52,
+                height: 52,
+                fontSize: 14,
+                letterSpacing: '0.05em',
+                color: 'var(--text-primary)',
+                backgroundColor: 'var(--bg-base)',
+                border: '1px solid var(--border-strong)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+              }}
+            >
+              VS
+            </div>
           </Item>
 
-          <Item className="text-center" style={{ marginTop: '48px' }}>
+          <Item className="text-center" style={{ marginTop: '40px' }}>
             <p
               className="font-semibold mx-auto"
               style={{
                 fontFamily: 'var(--font-display), sans-serif',
-                fontSize: 'clamp(1.2rem, 2.4vw, 1.6rem)',
+                fontSize: 'clamp(1.1rem, 2.2vw, 1.45rem)',
                 letterSpacing: '-0.02em',
                 lineHeight: 1.35,
                 color: 'var(--text-primary)',
-                maxWidth: '560px',
+                maxWidth: '520px',
               }}
             >
               {p.punchline}
