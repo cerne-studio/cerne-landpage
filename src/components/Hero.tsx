@@ -1,169 +1,154 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { MagneticButton } from '@/components/MagneticButton'
+import { RingsCanvas } from '@/components/RingsCanvas'
+import { PRELOAD_MS } from '@/components/Preloader'
 
 const WA_URL =
   'https://wa.me/55XXXXXXXXXX?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Cerne'
 
-/** Easing forte de entrada — built-ins são fracos demais (emil-design-eng). */
+/** Easing forte — built-ins são fracos demais (emil-design-eng). */
 const EASE_OUT = [0.23, 1, 0.32, 1] as const
 
-/** Delays progressivos do hero: kicker → título → sub → CTA. */
-const DELAY = { badge: 0.25, title: 0.55, sub: 0.85, cta: 1.15 }
+/** Delays após o preloader sair: kicker → wordmark → título → CTA. */
+const BASE = PRELOAD_MS / 1000 - 0.25
+const DELAY = { badge: BASE + 0.15, mark: BASE + 0.3, title: BASE + 0.75, cta: BASE + 1.05 }
 
 /**
- * Hero de abertura — vídeo institucional em tela cheia com o texto por cima.
- * O vídeo ganha um Ken Burns sutil dirigido pelo scroll e desemboca num
- * gradiente para o fundo do site (a página "nasce" do vídeo).
- *
- * Cores do texto são fixas (não tokens): o vídeo é sempre escuro,
- * independente do tema claro/escuro do resto da página.
+ * Hero — o wordmark monumental sobre os anéis de crescimento generativos.
+ * Cada letra de "cerne" sobe de um mask (clip) com stagger; os anéis
+ * crescem do centro como numa árvore real. Zero assets externos.
  */
 export function Hero() {
   const t = useTranslation()
   const h = t.hero
   const reduce = !!useReducedMotion()
   const ref = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
 
-  // Parallax de saída: conteúdo sobe mais devagar que o scroll + Ken Burns no vídeo
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const contentY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, -80])
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0])
-  const videoScale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [1, 1.1])
+  const contentY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, -90])
+  const ringsY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, 60])
+  const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0])
 
-  // prefers-reduced-motion: não dá autoplay — mostra o primeiro frame parado
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    if (reduce) {
-      video.pause()
-      video.currentTime = 0
-    } else {
-      // play() pode rejeitar se o browser bloquear autoplay; o poster segura o visual
-      video.play().catch(() => {})
-    }
-  }, [reduce])
-
-  const words = h.headline.split(' ')
+  const letters = 'cerne'.split('')
 
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden flex items-end md:items-center"
-      style={{ minHeight: '100svh', backgroundColor: '#0a0a0b' }}
+      className="relative overflow-hidden flex items-center justify-center"
+      style={{ minHeight: '100svh', backgroundColor: 'var(--bg-base)' }}
     >
-      {/* ── Vídeo de fundo ── */}
-      <motion.div aria-hidden className="absolute inset-0" style={{ scale: videoScale }}>
-        <video
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero/cerne-intro.mp4`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
+      {/* Anéis de crescimento — o cerne da árvore, vivo */}
+      <motion.div className="absolute inset-0" style={{ y: ringsY }}>
+        <RingsCanvas className="w-full h-full" growSeconds={5.5} />
       </motion.div>
 
-      {/* Overlay de legibilidade: vinheta + gradiente que desemboca no site */}
+      {/* Vinheta para legibilidade do texto sobre os anéis */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(180deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0.25) 35%, rgba(10,10,11,0.45) 70%, var(--bg-base) 100%)',
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(120% 85% at 50% 45%, transparent 40%, rgba(10,10,11,0.55) 100%)',
+            'radial-gradient(90% 70% at 50% 50%, transparent 30%, var(--bg-base) 100%)',
+          opacity: 0.65,
         }}
       />
 
-      {/* ── Conteúdo ── */}
       <motion.div
-        className="relative z-10 w-full max-w-6xl mx-auto px-6"
-        style={{ y: contentY, opacity: fade, paddingTop: '128px', paddingBottom: '96px' }}
+        className="relative z-10 w-full max-w-6xl mx-auto px-6 text-center"
+        style={{ y: contentY, opacity: fade, paddingTop: '96px', paddingBottom: '80px' }}
       >
+        {/* Kicker */}
         <motion.p
-          initial={reduce ? false : { opacity: 0, y: 16 }}
+          initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: DELAY.badge, ease: EASE_OUT }}
           className="inline-flex items-center gap-2 text-xs font-medium"
           style={{
-            color: 'rgba(240,240,242,0.85)',
-            border: '1px solid rgba(255,255,255,0.18)',
-            backgroundColor: 'rgba(10,10,11,0.45)',
+            color: 'var(--text-secondary)',
+            border: '1px solid var(--border)',
+            backgroundColor: 'color-mix(in srgb, var(--bg-base) 60%, transparent)',
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
             padding: '6px 14px',
             borderRadius: '100px',
             letterSpacing: '0.04em',
-            marginBottom: '28px',
+            marginBottom: '20px',
           }}
         >
           <span className="hero-dot" aria-hidden />
           {h.badge}
         </motion.p>
 
-        <h1
-          className="font-semibold max-w-3xl"
+        {/* Wordmark monumental — cada letra sobe de um mask */}
+        <div
+          aria-hidden
+          className="flex justify-center select-none"
+          style={{ marginBottom: '8px' }}
+        >
+          {letters.map((letter, i) => (
+            <span key={i} className="overflow-hidden inline-block" style={{ padding: '0.04em 0' }}>
+              <motion.span
+                className="inline-block font-semibold"
+                initial={reduce ? false : { y: '108%' }}
+                animate={{ y: '0%' }}
+                transition={{ duration: 0.9, delay: DELAY.mark + i * 0.07, ease: EASE_OUT }}
+                style={{
+                  fontFamily: 'var(--font-display), var(--font-geist-sans), sans-serif',
+                  fontSize: 'clamp(5.5rem, 19vw, 17rem)',
+                  lineHeight: 0.95,
+                  letterSpacing: '-0.05em',
+                  color: 'var(--text-primary)',
+                  willChange: 'transform',
+                }}
+              >
+                {letter}
+              </motion.span>
+            </span>
+          ))}
+        </div>
+
+        {/* Headline real (h1) — clareza cirúrgica, uma linha */}
+        <motion.h1
+          initial={reduce ? false : { opacity: 0, y: 20, filter: 'blur(6px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.65, delay: DELAY.title, ease: EASE_OUT }}
+          className="font-medium mx-auto"
           style={{
-            fontSize: 'clamp(2.5rem, 6.5vw, 4.5rem)',
-            letterSpacing: '-0.03em',
-            lineHeight: 1.05,
-            color: '#f5f5f7',
-            textShadow: '0 2px 32px rgba(0,0,0,0.45)',
-            marginBottom: '24px',
+            fontSize: 'clamp(1.25rem, 2.6vw, 1.75rem)',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.3,
+            color: 'var(--text-primary)',
+            maxWidth: '620px',
+            marginBottom: '14px',
           }}
         >
-          {words.map((word, i) => (
-            <motion.span
-              key={i}
-              className="inline-block"
-              initial={reduce ? false : { opacity: 0, y: 28, filter: 'blur(8px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{
-                duration: 0.6,
-                delay: DELAY.title + i * 0.055,
-                ease: EASE_OUT,
-              }}
-              style={{ willChange: 'transform' }}
-            >
-              {word}
-              {i < words.length - 1 ? ' ' : ''}
-            </motion.span>
-          ))}
-        </h1>
+          {h.headline}
+        </motion.h1>
 
         <motion.p
-          initial={reduce ? false : { opacity: 0, y: 20 }}
+          initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: DELAY.sub, ease: EASE_OUT }}
-          className="text-base md:text-lg max-w-xl"
+          transition={{ duration: 0.55, delay: DELAY.title + 0.12, ease: EASE_OUT }}
+          className="text-sm md:text-base mx-auto"
           style={{
-            color: 'rgba(240,240,242,0.78)',
+            color: 'var(--text-secondary)',
             letterSpacing: '-0.01em',
             lineHeight: 1.65,
-            textShadow: '0 1px 16px rgba(0,0,0,0.4)',
-            marginBottom: '40px',
+            maxWidth: '480px',
+            marginBottom: '36px',
           }}
         >
           {h.sub}
         </motion.p>
 
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 20 }}
+          initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: DELAY.cta, ease: EASE_OUT }}
-          className="flex flex-wrap items-center gap-4"
+          className="flex flex-wrap items-center justify-center gap-4"
         >
           <MagneticButton
             href={WA_URL}
@@ -182,14 +167,11 @@ export function Hero() {
             {h.cta} →
           </MagneticButton>
           <a
-            href="#processo"
-            className="ghost-button-dark inline-flex items-center justify-center text-base font-medium no-underline"
+            href="#manifesto"
+            className="ghost-button inline-flex items-center justify-center text-base font-medium no-underline"
             style={{
-              color: 'rgba(240,240,242,0.85)',
-              border: '1px solid rgba(255,255,255,0.25)',
-              backgroundColor: 'rgba(10,10,11,0.35)',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
+              color: 'var(--text-secondary)',
+              border: '1px solid var(--border-strong)',
               padding: '13px 24px',
               borderRadius: '12px',
               minHeight: '48px',
@@ -204,11 +186,11 @@ export function Hero() {
       <motion.div
         aria-hidden
         className="absolute left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 hidden md:flex"
-        style={{ bottom: 28, opacity: fade }}
+        style={{ bottom: 24, opacity: fade }}
       >
         <span
           className="text-[11px] uppercase"
-          style={{ letterSpacing: '0.12em', color: 'rgba(240,240,242,0.5)' }}
+          style={{ letterSpacing: '0.12em', color: 'var(--text-muted)' }}
         >
           {h.scrollHint}
         </span>

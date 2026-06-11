@@ -96,6 +96,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Display da marca — Sora nos títulos de seção e wordmark ─── */
+h1, h2 {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+}
+
 /* ─── Números tabulares — não tremem ao contar ─── */
 .tnum {
   font-feature-settings: 'tnum';

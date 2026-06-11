@@ -1,8 +1,8 @@
 'use client'
 import { Stagger, Item } from '@/components/Reveal'
-import { Parallax } from '@/components/Parallax'
 import { useTranslation } from '@/hooks/useTranslation'
 import { MagneticButton } from '@/components/MagneticButton'
+import { RingsCanvas } from '@/components/RingsCanvas'
 
 const WA_URL =
   'https://wa.me/55XXXXXXXXXX?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Cerne'
@@ -17,21 +17,21 @@ export function CTA() {
       className="relative overflow-hidden"
       style={{ backgroundColor: 'var(--bg-surface)', padding: 'clamp(64px, 12vw, 128px) 0' }}
     >
-      {/* Glow central com parallax + escala = sensação de "entrar" no foco */}
-      <Parallax
-        offset={60}
-        scaleDepth
+      {/* Anéis de crescimento — eco do hero no fechamento */}
+      <div
         aria-hidden
         className="absolute pointer-events-none"
         style={{
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '760px',
-          height: '420px',
-          background: 'radial-gradient(ellipse, var(--accent-subtle) 0%, transparent 70%)',
+          width: 'min(820px, 130vw)',
+          height: 'min(820px, 130vw)',
+          opacity: 0.5,
         }}
-      />
+      >
+        <RingsCanvas className="w-full h-full" growSeconds={4} parallax={8} />
+      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <Stagger amount={0.3}>

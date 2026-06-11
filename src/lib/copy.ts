@@ -8,10 +8,14 @@ export const copy = {
     hero: {
       badge: 'Estúdio artesanal · Brasil',
       headline: 'O sistema que a sua empresa merecia ter.',
-      sub: 'Mais rápido e mais acessível que uma software house. Mais sólido e seguro que no-code. Entregue em até 8 semanas, com acabamento de estúdio de produto.',
+      sub: 'Sistemas internos sob medida para PMEs. Em até 8 semanas, com acabamento de estúdio de produto.',
       cta: 'Quero um sistema assim',
-      ctaSecondary: 'Ver como funciona',
+      ctaSecondary: 'Por que "cerne"?',
       scrollHint: 'role para descer',
+    },
+    manifesto: {
+      label: 'O nome',
+      text: 'Cerne é o *núcleo* da madeira. A parte mais densa da árvore — a que sustenta tudo por *séculos.* É isso que a gente constrói. Não um site. Não uma planilha. O *cerne* que segura a sua operação inteira, todos os dias.',
     },
     marquee: [
       'CRM sob medida',
@@ -195,10 +199,14 @@ export const copy = {
     hero: {
       badge: 'Artisan studio · Brazil',
       headline: 'The system your company deserved to have.',
-      sub: 'Faster and more affordable than a software house. More solid and secure than no-code. Delivered in up to 8 weeks, with studio-grade craftsmanship.',
+      sub: 'Custom internal systems for small businesses. In up to 8 weeks, with product-studio craftsmanship.',
       cta: 'I want a system like this',
-      ctaSecondary: 'See how it works',
+      ctaSecondary: 'Why "cerne"?',
       scrollHint: 'scroll to explore',
+    },
+    manifesto: {
+      label: 'The name',
+      text: 'Cerne is Portuguese for *heartwood* — the densest core of the tree, the part that holds everything up for *centuries.* That is what we build. Not a website. Not a spreadsheet. The *core* that holds your entire operation, every single day.',
     },
     marquee: [
       'Custom CRM',
