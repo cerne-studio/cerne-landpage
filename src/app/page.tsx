@@ -1,34 +1,29 @@
-import { Nav } from '@/components/Nav'
-import { Hero } from '@/components/Hero'
-import { Marquee } from '@/components/Marquee'
-import { Problema } from '@/components/Problema'
-import { Profiles } from '@/components/Profiles'
-import { Processo } from '@/components/Processo'
-import { Beneficios } from '@/components/Beneficios'
-import { Setores } from '@/components/Setores'
-import { Posicionamento } from '@/components/Posicionamento'
-import { Prova } from '@/components/Prova'
-import { CTA } from '@/components/CTA'
-import { Footer } from '@/components/Footer'
+import Nav from "@/components/Nav";
+import Hero from "@/components/Hero";
+import Marquee from "@/components/Marquee";
+import Problema from "@/components/Problema";
+import SistemaShowcase from "@/components/SistemaShowcase";
+import Profiles from "@/components/Profiles";
+import Processo from "@/components/Processo";
+import Stats from "@/components/Stats";
+import ContatoForm from "@/components/ContatoForm";
+import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <Nav />
-
-      <main id="conteudo">
+      <main>
         <Hero />
         <Marquee />
         <Problema />
+        <SistemaShowcase />
         <Profiles />
         <Processo />
-        <Beneficios />
-        <Setores />
-        <Posicionamento />
-        <Prova />
-        <CTA />
+        <Stats />
+        <ContatoForm />
       </main>
       <Footer />
     </>
-  )
+  );
 }

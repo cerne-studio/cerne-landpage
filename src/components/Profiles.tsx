@@ -1,118 +1,123 @@
-'use client'
-import { Stagger, Item } from '@/components/Reveal'
-import { Parallax } from '@/components/Parallax'
-import { useTranslation } from '@/hooks/useTranslation'
+"use client";
+import React from "react";
 
-export function Profiles() {
-  const t = useTranslation()
-  const p = t.profiles
+function goContact(e: React.MouseEvent) {
+  e.preventDefault();
+  document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
+}
 
+const PROFILES = [
+  {
+    label: "Perfil A",
+    headline: "Você gerencia tudo na cabeça — e está cansado disso.",
+    body: "Cada cliente, prazo e cobrança depende da sua memória. Quando a equipe cresce, a bagunça cresce junto.",
+    solution: "Com o cerne, seu time trabalha com as mesmas informações — em tempo real, sem você precisar repetir nada.",
+    accent: "#3DAA7E",
+  },
+  {
+    label: "Perfil B",
+    headline: "Você tem planilha, WhatsApp e caderninho — e nada conversa.",
+    body: "São três sistemas que ninguém atualiza direito. Você perde histórico de clientes, erra cobrança e paga pra fechar o mês.",
+    solution: "O cerne reúne tudo: clientes, finanças e agenda num único lugar que a equipe realmente usa.",
+    accent: "#5B8EF5",
+  },
+  {
+    label: "Perfil C",
+    headline: "Você já tentou software — e jogou fora depois de 2 semanas.",
+    body: "Sistemas genéricos pedem configuração que não acaba, treinamento que nunca fica pronto, e ainda custam caro.",
+    solution: "O cerne é montado para o seu negócio antes de você abrir. Você começa usando no primeiro dia.",
+    accent: "#F5A030",
+  },
+] as const;
+
+export default function Profiles() {
   return (
-    <section id="profiles" className="relative overflow-hidden" style={{ backgroundColor: 'var(--bg-surface)', padding: 'clamp(64px, 12vw, 128px) 0' }}>
-      {/* Glow de profundidade (canto oposto, parallax forte) */}
-      <Parallax
-        offset={120}
-        aria-hidden
-        className="absolute pointer-events-none"
-        style={{
-          top: '10%',
-          right: '-15%',
-          width: '700px',
-          height: '700px',
-          background: 'radial-gradient(circle, var(--accent-subtle) 0%, transparent 60%)',
-        }}
-      />
+    <section
+      style={{
+        position: "relative",
+        background: "var(--surface-page)",
+        padding: "clamp(80px,13vw,132px) 0",
+      }}
+    >
+      <div style={{ maxWidth: "var(--container)", margin: "0 auto", padding: "0 var(--gutter)" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(40px,7vw,64px)" }}>
+          <span className="section-label">PARA QUEM É</span>
+          <h2 className="font-display" style={{ fontWeight: 700, fontSize: "var(--display-sm)", letterSpacing: "-0.03em", lineHeight: 1.1, color: "var(--text-heading)", maxWidth: "20ch", margin: "14px auto 0" }}>
+            Você se vê em algum desses?
+          </h2>
+        </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <Stagger wide>
-          <Item
-            className="text-xs font-medium uppercase"
-            style={{ color: 'var(--accent)', letterSpacing: '0.1em', marginBottom: '16px' }}
-          >
-            {p.label}
-          </Item>
-          <Item
-            as="h2"
-            className="text-4xl md:text-5xl font-semibold"
-            style={{
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.02em',
-              lineHeight: '1.1',
-              marginBottom: '12px',
-            }}
-          >
-            {p.headline}
-          </Item>
-          <Item
-            className="text-base max-w-lg"
-            style={{
-              color: 'var(--text-secondary)',
-              letterSpacing: '-0.01em',
-              lineHeight: '1.6',
-              marginBottom: '56px',
-            }}
-          >
-            {p.sub}
-          </Item>
-
-          {/* 4 cards — profundidade intensa, stagger largo */}
-          <div className="grid md:grid-cols-3 gap-4 mb-16">
-            {p.cards.map((card) => (
-              <Item
-                key={card.badge}
-                deep
-                className="profile-card p-8 rounded-2xl"
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
+          {PROFILES.map((p, i) => (
+            <div
+              key={i}
+              style={{
+                background: "var(--surface-card)",
+                border: "1px solid var(--border-subtle)",
+                borderRadius: 16,
+                padding: "clamp(24px,4vw,32px)",
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: "var(--shadow-sm)",
+                borderTop: `3px solid ${p.accent}`,
+              }}
+            >
+              <span
+                className="font-mono"
+                style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: p.accent, textTransform: "uppercase", marginBottom: 14 }}
+              >
+                {p.label}
+              </span>
+              <h3
+                className="font-display"
+                style={{ fontWeight: 700, fontSize: "var(--text-xl)", letterSpacing: "-0.02em", lineHeight: 1.25, color: "var(--text-heading)", marginBottom: 12 }}
+              >
+                {p.headline}
+              </h3>
+              <p className="font-sans" style={{ fontSize: "var(--text-base)", lineHeight: 1.65, color: "var(--text-body)", flex: 1 }}>
+                {p.body}
+              </p>
+              <div
                 style={{
-                  backgroundColor: 'var(--bg-elevated)',
-                  border: '1px solid var(--border)',
+                  marginTop: 20,
+                  paddingTop: 18,
+                  borderTop: "1px solid var(--border-subtle)",
+                  display: "flex",
+                  gap: 10,
+                  alignItems: "flex-start",
                 }}
               >
                 <span
-                  className="inline-block text-xs font-medium mb-5"
                   style={{
-                    color: 'var(--accent)',
-                    backgroundColor: 'var(--accent-subtle)',
-                    border: '1px solid var(--accent-glow)',
-                    padding: '4px 10px',
-                    borderRadius: '100px',
-                    letterSpacing: '0.02em',
+                    flexShrink: 0,
+                    marginTop: 3,
+                    width: 16,
+                    height: 16,
+                    borderRadius: "50%",
+                    background: p.accent,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  {card.badge}
+                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                    <path d="M2 5.5L4 7.5L8.5 3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </span>
-                <p
-                  className="text-base font-medium mb-3 italic"
-                  style={{ color: 'var(--text-primary)', letterSpacing: '-0.01em', lineHeight: '1.5' }}
-                >
-                  &ldquo;{card.anchor}&rdquo;
+                <p className="font-sans" style={{ fontSize: 13.5, lineHeight: 1.55, color: "var(--text-body)", margin: 0 }}>
+                  {p.solution}
                 </p>
-                <p
-                  className="text-sm leading-relaxed mb-5"
-                  style={{ color: 'var(--text-secondary)', lineHeight: '1.65' }}
-                >
-                  {card.body}
-                </p>
-                <p className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>
-                  {card.solution}
-                </p>
-              </Item>
-            ))}
-          </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-          <Item
-            className="text-center text-base"
-            style={{
-              color: 'var(--text-muted)',
-              letterSpacing: '-0.01em',
-              lineHeight: '1.6',
-              maxWidth: '560px',
-              margin: '0 auto',
-            }}
-          >
-            {p.closing}
-          </Item>
-        </Stagger>
+        <div style={{ textAlign: "center", marginTop: "clamp(40px,6vw,56px)" }}>
+          <a href="#contato" onClick={goContact} className="btn-primary">
+            Quero ver o cerne para o meu negócio
+          </a>
+        </div>
       </div>
     </section>
-  )
+  );
 }

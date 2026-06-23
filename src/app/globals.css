@@ -1,276 +1,183 @@
 @import "tailwindcss";
 
-/* ─── Default tokens (dark — aplica antes do JS hidratrar) ───
-   Paleta extraída do material oficial: preto profundo + mint do logo. */
+/* ── Cerne design tokens ─────────────────────────────────────── */
 :root {
-  --bg-base:        #060708;
-  --bg-surface:     #0b0d0e;
-  --bg-elevated:    #131619;
-  --border:         rgba(255,255,255,0.08);
-  --border-strong:  rgba(255,255,255,0.15);
-  --text-primary:   #f0f2f1;
-  --text-secondary: #8b9a94;
-  --text-muted:     #5a6a64;
-  --accent:         #3dd9a0;
-  --accent-hover:   #2cc78f;
-  --accent-glow:    rgba(61,217,160,0.22);
-  --accent-subtle:  rgba(61,217,160,0.05);
-  --nav-bg:         rgba(6,7,8,0.85);
-  --grid-line:      rgba(255,255,255,0.025);
-  --ghost-number:   rgba(255,255,255,0.05);
-  --scroll-line:    rgba(255,255,255,0.3);
-  --shadow-card:    none;
+  --paper:          #F7F5F2;
+  --paper-dim:      #F1EDE7;
+  --paper-deep:     #EAE5DD;
+  --surface:        #FFFFFF;
+  --surface-soft:   #FBFAF8;
+
+  --ink:            #1A1917;
+  --ink-secondary:  #5C564E;
+  --ink-muted:      #8A8378;
+  --ink-faint:      #B4ADA2;
+
+  --line:           rgba(26,25,23,0.09);
+  --line-strong:    rgba(26,25,23,0.16);
+  --line-faint:     rgba(26,25,23,0.05);
+
+  --forest-50:  #ECF3EF;
+  --forest-100: #D7E7DF;
+  --forest-200: #A9CDBC;
+  --forest-300: #6FAE93;
+  --forest-400: #3C8A6B;
+  --forest-500: #1F6B50;
+  --forest-600: #1A5C44;
+  --forest-700: #154A37;
+  --forest-800: #103A2B;
+  --forest-900: #0C2C21;
+
+  --mint:        #3DAA7E;
+  --mint-bright: #51C091;
+
+  --amber:      #B07D1E;
+  --amber-tint: #F6EEDC;
+  --rust:       #B0432E;
+  --rust-tint:  #F6E5E0;
+  --slate:      #44606A;
+  --slate-tint: #E3ECEE;
+
+  /* semantic */
+  --surface-page:   var(--paper);
+  --surface-band:   var(--paper-dim);
+  --surface-card:   var(--surface);
+  --text-heading:   var(--ink);
+  --text-body:      var(--ink-secondary);
+  --text-muted:     var(--ink-muted);
+  --text-faint:     var(--ink-faint);
+  --border-subtle:  var(--line);
+  --border-default: var(--line-strong);
+  --accent:         var(--forest-500);
+  --accent-hover:   var(--forest-600);
+  --accent-tint:    var(--forest-50);
+  --accent-tint-2:  var(--forest-100);
+  --accent-ring:    rgba(31,107,80,0.22);
+  --accent-glow:    rgba(31,107,80,0.10);
+  --grid-line:      rgba(26,25,23,0.04);
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 20px rgba(0,0,0,0.10),0 4px 8px rgba(0,0,0,0.06);
+
+  --container: 1200px;
+  --gutter:    clamp(20px, 5vw, 48px);
+
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-card: 14px;
+  --radius-pill: 999px;
+
+  --display-lg: clamp(48px, 6.5vw, 80px);
+  --display-md: clamp(36px, 5vw,  60px);
+  --display-sm: clamp(28px, 3.5vw,42px);
+  --text-2xl:   clamp(20px, 2.5vw, 26px);
+  --text-xl:    clamp(17px, 1.8vw, 20px);
+  --text-lg:    clamp(15px, 1.6vw, 18px);
+
+  --ease-out: cubic-bezier(0.16,1,0.3,1);
 }
 
-/* ─── Dark theme (explícito) ─── */
-[data-theme="dark"] {
-  --bg-base:        #060708;
-  --bg-surface:     #0b0d0e;
-  --bg-elevated:    #131619;
-  --border:         rgba(255,255,255,0.08);
-  --border-strong:  rgba(255,255,255,0.15);
-  --text-primary:   #f0f2f1;
-  --text-secondary: #8b9a94;
-  --text-muted:     #5a6a64;
-  --accent:         #3dd9a0;
-  --accent-hover:   #2cc78f;
-  --accent-glow:    rgba(61,217,160,0.22);
-  --accent-subtle:  rgba(61,217,160,0.05);
-  --nav-bg:         rgba(6,7,8,0.85);
-  --grid-line:      rgba(255,255,255,0.025);
-  --ghost-number:   rgba(255,255,255,0.05);
-  --scroll-line:    rgba(255,255,255,0.3);
-  --shadow-card:    none;
-}
+/* ── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
-/* ─── Light theme — premium, não genérico ─── */
-[data-theme="light"] {
-  --bg-base:        #f4f4f1;
-  --bg-surface:     #ffffff;
-  --bg-elevated:    #ebebe8;
-  --border:         rgba(0,0,0,0.08);
-  --border-strong:  rgba(0,0,0,0.16);
-  --text-primary:   #0d0d0e;
-  --text-secondary: #555560;
-  --text-muted:     #999aaa;
-  --accent:         #0b8a60;
-  --accent-hover:   #097a54;
-  --accent-glow:    rgba(11,138,96,0.12);
-  --accent-subtle:  rgba(11,138,96,0.04);
-  --nav-bg:         rgba(244,244,241,0.85);
-  --grid-line:      rgba(0,0,0,0.04);
-  --ghost-number:   rgba(0,0,0,0.05);
-  --scroll-line:    rgba(0,0,0,0.15);
-  --shadow-card:    0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
-}
-
-[data-theme="light"] .profile-card {
-  box-shadow: var(--shadow-card);
-}
-
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-}
-
-/* ─── Global theme transition ─── */
-/* Exceção intencional à regra de não usar transition em múltiplas propriedades.
-   Serve exclusivamente para a troca de tema, não para interações de UI. */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  transition:
-    background-color 220ms ease-out,
-    border-color 220ms ease-out,
-    color 150ms ease-out;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--bg-base);
-  color: var(--text-primary);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--surface-page);
+  color: var(--text-heading);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* ─── Display da marca — Sora nos títulos de seção e wordmark ─── */
-h1, h2 {
-  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+/* ── Keyframes ───────────────────────────────────────────────── */
+@keyframes cerneSpin       { to { transform: rotate(360deg); } }
+@keyframes cerneSpinRev    { to { transform: rotate(-360deg); } }
+@keyframes cernePulse      { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.12);opacity:0.82} }
+@keyframes cerneRingPulse  { 0%{transform:scale(0.7);opacity:0.55} 70%{opacity:0} 100%{transform:scale(1.6);opacity:0} }
+@keyframes cerneFloat      { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes cerneFadeIn     { from{opacity:0} to{opacity:1} }
+@keyframes cerneDrawLine   { from{stroke-dashoffset:1} to{stroke-dashoffset:0} }
+@keyframes cerneArc        { from{stroke-dasharray:0 100} to{stroke-dasharray:var(--len) 100} }
+@keyframes cerneBarGrow    { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+@keyframes cerneGrowX      { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+@keyframes cerneAgendaPulse{ 0%{box-shadow:0 0 0 0 rgba(160,123,245,.5)} 70%{box-shadow:0 0 0 8px rgba(160,123,245,0)} 100%{box-shadow:0 0 0 0 rgba(160,123,245,0)} }
+@keyframes cerneBreathe    { 0%,100%{box-shadow:0 1px 2px rgba(0,0,0,.05)} 50%{box-shadow:0 7px 17px rgba(0,0,0,.13)} }
+@keyframes cerneCheckRing  { from{stroke-dashoffset:170} to{stroke-dashoffset:0} }
+@keyframes cerneCheckMark  { from{stroke-dashoffset:48} to{stroke-dashoffset:0} }
+@keyframes cernePopIn      { from{opacity:0;transform:translateY(6px) scale(.96)} to{opacity:1;transform:translateY(0) scale(1)} }
+@keyframes cerneMarquee    { to{transform:translateX(-50%)} }
+
+/* ── Utility classes ─────────────────────────────────────────── */
+.font-display { font-family: var(--font-sora), ui-sans-serif, system-ui, sans-serif; }
+.font-sans    { font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif; }
+.font-mono    { font-family: var(--font-geist-mono), ui-monospace, monospace; }
+
+.section-label {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
 }
 
-/* ─── Números tabulares — não tremem ao contar ─── */
-.tnum {
-  font-feature-settings: 'tnum';
-  font-variant-numeric: tabular-nums;
-}
-
-/* ─── Hero: grade blueprint sutil ─── */
-.hero-grid {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(120% 90% at 50% 30%, black 30%, transparent 80%);
-  -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, black 30%, transparent 80%);
-}
-
-/* ─── Hero: ponto de status pulsante ─── */
-.hero-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background-color: var(--accent);
-  animation: heroDotPulse 2.2s ease-in-out infinite;
-}
-@keyframes heroDotPulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow); }
-  50% { opacity: 0.65; box-shadow: 0 0 0 5px transparent; }
-}
-
-/* ─── Hero: linha de scroll ─── */
-.hero-scroll-line {
-  width: 1px;
-  height: 32px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: scrollPulse 1.8s ease-in-out infinite;
-}
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
-  50% { opacity: 1; transform: scaleY(1); }
-}
-
-/* ─── Botão fantasma — feedback sem depender só de hover ─── */
-.ghost-button {
-  transition: border-color 150ms ease-out, color 150ms ease-out, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-.ghost-button:active {
-  transform: scale(0.97);
-}
-@media (hover: hover) and (pointer: fine) {
-  .ghost-button:hover {
-    border-color: var(--accent);
-    color: var(--text-primary);
-  }
-}
-
-/* ─── Botão fantasma sobre vídeo (hero) — cores fixas, vídeo é sempre escuro ─── */
-.ghost-button-dark {
-  transition: border-color 150ms ease-out, color 150ms ease-out, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-.ghost-button-dark:active {
-  transform: scale(0.97);
-}
-@media (hover: hover) and (pointer: fine) {
-  .ghost-button-dark:hover {
-    border-color: var(--accent);
-    color: #f5f5f7;
-  }
-}
-
-/* ─── Marquee — movimento constante, CSS puro (fora da main thread) ─── */
-.marquee-track {
-  animation: marqueeScroll 36s linear infinite;
-}
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
-}
-.marquee-fade {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 96px;
-  pointer-events: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
-}
-
-/* ─── ChaosMap: chips flutuando + linhas fluindo para o núcleo ─── */
-.chaos-chip {
-  animation: chaosFloat 5.5s ease-in-out infinite;
-}
-@keyframes chaosFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
-}
-.chaos-line {
-  animation: chaosFlow 3s linear infinite;
-}
-@keyframes chaosFlow {
-  to { stroke-dashoffset: -7.6; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .chaos-chip, .chaos-line { animation: none; }
-}
-
-/* ─── Craft: linha de acento que cresce no hover (clip-path → GPU) ─── */
-.craft-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background-color: var(--accent);
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 240ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-@media (hover: hover) and (pointer: fine) {
-  .craft-card:hover .craft-line {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-/* ─── Acessibilidade: conteúdo só para leitores de tela ─── */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ─── Skip link — visível só ao focar via teclado ─── */
-.skip-link {
-  position: fixed;
-  top: 8px;
-  left: 8px;
-  z-index: 999;
-  padding: 10px 16px;
-  border-radius: 8px;
-  background-color: var(--accent);
-  color: var(--bg-base);
-  font-size: 14px;
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 26px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  transform: translateY(-150%);
-  transition: transform 150ms ease-out;
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out);
 }
-.skip-link:focus {
-  transform: translateY(0);
+.btn-outline:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out), transform 150ms var(--ease-out);
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+.grid-bg {
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.grid-bg-fade {
+  -webkit-mask-image: radial-gradient(120% 75% at 50% 28%, black 22%, transparent 72%);
+  mask-image: radial-gradient(120% 75% at 50% 28%, black 22%, transparent 72%);
 }
 
-/* ─── prefers-reduced-motion: corta animações autônomas (CSS) ─── */
-/* Mantém o scroll utilizável e desativa keyframes (spinner, pulso do scroll,
-   respiro). Movimento dirigido pelo próprio usuário (câmera no scroll) é OK. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
+/* number display */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* showcase dark world */
+.sistema-world {
+  background: #141210;
+  color: #A8A095;
 }
+.sistema-world .section-label { color: var(--mint); }
+.sistema-world [data-accent] { color: var(--mint); }
