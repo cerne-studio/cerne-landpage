@@ -1,3 +1,4 @@
+import IntroScreen from "@/components/IntroScreen";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
@@ -12,6 +13,7 @@ import Footer from "@/components/Footer";
 export default function Page() {
   return (
     <>
+      <IntroScreen />
       <Nav />
       <main>
         <Hero />
