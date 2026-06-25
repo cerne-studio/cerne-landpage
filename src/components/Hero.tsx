@@ -32,8 +32,8 @@ export default function Hero() {
         <div
           style={{
             position: "relative",
-            width: 220,
-            height: 220,
+            width: "min(280px, 88vw)",
+            height: "min(280px, 88vw)",
             display: "grid",
             placeItems: "center",
             marginBottom: "clamp(28px,5vw,48px)",

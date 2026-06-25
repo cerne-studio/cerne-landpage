@@ -111,6 +111,36 @@ export default function SistemaShowcase() {
 
       {/* Header */}
       <div style={{ position:"relative", maxWidth:"var(--container)", margin:"0 auto", padding:"0 var(--gutter)", textAlign:"center", marginBottom:"clamp(32px,5vw,56px)" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+          <div
+            className="font-sans"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "4px 12px",
+              borderRadius: "var(--radius-pill)",
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: "0.025em",
+              background: "color-mix(in srgb, var(--mint) 10%, transparent)",
+              color: "var(--mint)",
+              border: "1px solid color-mix(in srgb, var(--mint) 20%, transparent)",
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "var(--mint)",
+                animation: "cernePulse 1.8s var(--ease-out) infinite",
+              }}
+            />
+            Demo interativa — explore à vontade
+          </div>
+        </div>
         <span className="font-sans" style={{ fontSize:12, fontWeight:600, textTransform:"uppercase", letterSpacing:"0.1em", color:"#3DAA7E" }}>NA PRÁTICA</span>
         <h2 className="font-display" style={{ fontWeight:700, fontSize:"var(--display-sm)", letterSpacing:"-0.03em", lineHeight:1.1, color:"#F3F1ED", maxWidth:"16ch", margin:"14px auto 0" }}>
           O sistema que você vai usar, de verdade.
@@ -123,7 +153,7 @@ export default function SistemaShowcase() {
         onTouchEnd={onTouchEnd}
         style={
           isMob
-            ? { position:"relative", padding:"0 16px", marginBottom:24, overflow:"hidden" }
+            ? { position:"relative", width:"100%", maxWidth:"100vw", padding:"0 16px", marginBottom:24, overflow:"hidden" }
             : { position:"relative", height:"clamp(370px,50vw,540px)", perspective:"2100px", marginBottom:40 }
         }
       >

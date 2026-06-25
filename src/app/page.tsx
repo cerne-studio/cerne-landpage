@@ -1,4 +1,5 @@
 import IntroScreen from "@/components/IntroScreen";
+import ScrollToTop from "@/components/ScrollToTop";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
@@ -13,6 +14,7 @@ import Footer from "@/components/Footer";
 export default function Page() {
   return (
     <>
+      <ScrollToTop />
       <IntroScreen />
       <Nav />
       <main>

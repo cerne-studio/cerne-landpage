@@ -39,10 +39,13 @@ export default function IntroScreen() {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: '#000',
+        width: '100%',
+        maxWidth: '100vw',
+        overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: '0 16px',
         transition: 'opacity 0.6s ease',
         opacity: phase === 'exit' ? 0 : 1,
         pointerEvents: phase === 'exit' ? 'none' : 'auto',
@@ -53,7 +56,13 @@ export default function IntroScreen() {
         src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/intro.mp4`}
         muted
         playsInline
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        onError={() => setPhase('done')}
+        style={{
+          width: 'min(500px, 85vw)',
+          maxHeight: '85vh',
+          height: 'auto',
+          objectFit: 'contain',
+        }}
       />
     </div>
   )

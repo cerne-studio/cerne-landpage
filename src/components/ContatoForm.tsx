@@ -172,7 +172,7 @@ export default function ContatoForm() {
                       fontSize:13,
                       fontWeight: on ? 600 : 500,
                       cursor:"pointer",
-                      transition:"all 180ms",
+                      transition:"background-color 180ms var(--ease-out), border-color 180ms var(--ease-out), color 180ms var(--ease-out)",
                     }}
                   >
                     {p}
