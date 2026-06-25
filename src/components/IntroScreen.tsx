@@ -9,26 +9,34 @@ export default function IntroScreen() {
     const v = videoRef.current
     if (!v) return
 
-    // Se o usuário já viu o intro nessa sessão, pula
     if (sessionStorage.getItem('intro-seen')) {
       setPhase('done')
       return
     }
 
+    // Fallback: se o vídeo travar por mais de 8s, descarta
+    const fallback = setTimeout(() => {
+      sessionStorage.setItem('intro-seen', '1')
+      setPhase('done')
+    }, 8000)
+
     v.play().catch(() => {
-      // Autoplay bloqueado — pula direto
+      clearTimeout(fallback)
       setPhase('done')
     })
 
     const onEnd = () => {
+      clearTimeout(fallback)
       sessionStorage.setItem('intro-seen', '1')
       setPhase('exit')
-      // Remove após a transição CSS
       setTimeout(() => setPhase('done'), 600)
     }
 
     v.addEventListener('ended', onEnd)
-    return () => v.removeEventListener('ended', onEnd)
+    return () => {
+      v.removeEventListener('ended', onEnd)
+      clearTimeout(fallback)
+    }
   }, [])
 
   if (phase === 'done') return null
@@ -39,13 +47,7 @@ export default function IntroScreen() {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        width: '100%',
-        maxWidth: '100vw',
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0 16px',
+        background: '#000',
         transition: 'opacity 0.6s ease',
         opacity: phase === 'exit' ? 0 : 1,
         pointerEvents: phase === 'exit' ? 'none' : 'auto',
@@ -57,12 +59,7 @@ export default function IntroScreen() {
         muted
         playsInline
         onError={() => setPhase('done')}
-        style={{
-          width: 'min(500px, 85vw)',
-          maxHeight: '85vh',
-          height: 'auto',
-          objectFit: 'contain',
-        }}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
     </div>
   )
