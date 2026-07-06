@@ -14,6 +14,11 @@ export default function IntroScreen() {
       return
     }
 
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+    if (window.innerWidth <= 760) {
+      v.src = `${basePath}/intro-mobile.mp4`
+    }
+
     // Fallback: se o vídeo travar por mais de 8s, descarta
     const fallback = setTimeout(() => {
       sessionStorage.setItem('intro-seen', '1')
