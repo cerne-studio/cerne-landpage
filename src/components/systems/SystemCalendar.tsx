@@ -60,7 +60,7 @@ export default function SystemCalendar({ mobile }: { mobile: boolean }) {
 
   return (
     <MonitorFrame url="agendapro.cerne.app">
-      <div style={ mobile ? { display:"flex", flexDirection:"column", minHeight:300 } : { display:"grid", gridTemplateColumns:"150px 1fr", minHeight:348 }}>
+      <div style={ mobile ? { display:"flex", flexDirection:"column", height:400 } : { display:"grid", gridTemplateColumns:"150px 1fr", height:348 }}>
         <NavBar />
         <div style={{ padding: mobile ? 14 : 18 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>

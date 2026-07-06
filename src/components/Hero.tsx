@@ -100,7 +100,7 @@ export default function Hero() {
             margin: "0 0 22px",
           }}
         >
-          Sistemas que fazem sentido para o seu negócio.
+          Sistema sob medida pro seu jeito de trabalhar.
         </h1>
 
         <p
@@ -109,11 +109,11 @@ export default function Hero() {
             fontSize: "var(--text-lg)",
             lineHeight: 1.6,
             color: "var(--text-body)",
-            maxWidth: 540,
+            maxWidth: 520,
             margin: "0 0 34px",
           }}
         >
-          CRM, financeiro, agenda e dashboard — num só lugar, sem complicação.
+          A gente entende como o seu negócio funciona e desenvolve um sistema do zero que encaixa no seu fluxo — não o contrário. CRM, agenda, financeiro e dashboard construídos linha a linha pra você.
         </p>
 
         <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
@@ -124,33 +124,20 @@ export default function Hero() {
               document.getElementById("showcase")?.scrollIntoView({ behavior: "smooth" });
             }}
             className="btn-primary"
-            style={{ height: 52, padding: "0 28px", fontSize: 16 }}
+            style={{ fontSize: 16 }}
           >
             Ver na prática →
           </a>
           <a
-            href="#contato"
+            href="#processo"
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
+              document.getElementById("processo")?.scrollIntoView({ behavior: "smooth" });
             }}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              height: 52,
-              padding: "0 28px",
-              borderRadius: "var(--radius-lg)",
-              border: "1.5px solid var(--border-default)",
-              background: "transparent",
-              color: "var(--text-body)",
-              fontSize: 16,
-              fontWeight: 600,
-              textDecoration: "none",
-              cursor: "pointer",
-              fontFamily: "var(--font-geist-sans)",
-            }}
+            className="btn-ghost"
+            style={{ fontSize: 16 }}
           >
-            Saiba mais
+            Como funciona →
           </a>
         </div>
       </div>

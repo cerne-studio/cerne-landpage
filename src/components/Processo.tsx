@@ -32,9 +32,10 @@ const STEPS = [
 export default function Processo() {
   return (
     <section
+      id="processo"
       style={{
         position: "relative",
-        background: "var(--surface-subtle)",
+        background: "var(--surface-band)",
         padding: "clamp(80px,13vw,132px) 0",
       }}
     >
@@ -62,7 +63,6 @@ export default function Processo() {
                 <div
                   aria-hidden
                   style={{
-                    display: "none",
                     position: "absolute",
                     top: 22,
                     right: "-14px",

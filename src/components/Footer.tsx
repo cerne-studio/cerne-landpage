@@ -2,6 +2,7 @@
 
 export default function Footer() {
   const year = 2026;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
   return (
     <footer
@@ -27,12 +28,9 @@ export default function Footer() {
         <div style={{ minWidth: 180 }}>
           <div className="font-display" style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.03em", color: "#F3F1ED", marginBottom: 8 }}>
             cerne
-            <span style={{ marginLeft: 4, fontSize: 10, fontWeight: 600, letterSpacing: "0.06em", color: "#3DAA7E", textTransform: "uppercase", verticalAlign: "middle" }}>
-              sistemas
-            </span>
           </div>
-          <p className="font-sans" style={{ fontSize: 13.5, lineHeight: 1.6, color: "#6B6760", maxWidth: 200, margin: 0 }}>
-            Software que faz sentido para o seu negócio.
+          <p className="font-sans" style={{ fontSize: 13.5, lineHeight: 1.6, color: "#6B6760", maxWidth: 220, margin: 0 }}>
+            Sistema sob medida pro seu jeito de trabalhar.
           </p>
         </div>
 
@@ -83,7 +81,7 @@ export default function Footer() {
               Legal
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {[["#", "Privacidade"], ["#", "Termos"]].map(([href, label]) => (
+              {[[`${basePath}/privacidade`, "Privacidade"], ["#", "Termos"]].map(([href, label]) => (
                 <a
                   key={label}
                   href={href}
@@ -117,7 +115,7 @@ export default function Footer() {
           © {year} cerne sistemas
         </span>
         <span className="font-sans" style={{ fontSize: 12.5, color: "#4A4540" }}>
-          Feito com cuidado no Brasil.
+          Construído linha a linha. No Brasil.
         </span>
       </div>
     </footer>

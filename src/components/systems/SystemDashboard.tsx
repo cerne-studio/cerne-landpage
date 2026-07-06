@@ -141,7 +141,7 @@ export default function SystemDashboard({ mobile }: { mobile: boolean }) {
   ));
 
   const overview = (
-    <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"auto auto", gap:12, minHeight:312 }}>
+    <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"auto auto", gap:12, minHeight:348 }}>
       {kpiCard}{donutCard}{tableCard}{feedCard}
     </div>
   );
@@ -202,16 +202,16 @@ export default function SystemDashboard({ mobile }: { mobile: boolean }) {
   );
 
   const vendas = (
-    <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"auto auto", gap:12, minHeight:312 }}>
+    <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"auto auto", gap:12, minHeight:348 }}>
       {revCard}{topCard}{statCard}
     </div>
   );
 
   return (
     <MonitorFrame url="painel.cerne.app">
-      <div style={ mobile ? { display:"flex", flexDirection:"column", minHeight:300 } : { display:"grid", gridTemplateColumns:"150px 1fr", minHeight:348 }}>
+      <div style={ mobile ? { display:"flex", flexDirection:"column", height:400 } : { display:"grid", gridTemplateColumns:"150px 1fr", height:348 }}>
         <NavBar view={view} setView={setView} mobile={mobile} />
-        <div key={view} style={{ padding: mobile ? 14 : 18, animation:"cerneFadeIn 180ms ease" }}>
+        <div key={view} style={{ padding: mobile ? 14 : 18, animation:"cerneFadeIn 180ms ease", overflowY:"auto", minHeight:0 }}>
           {view === 0 ? overview : vendas}
         </div>
       </div>

@@ -20,6 +20,7 @@ export default function Problema() {
 
   return (
     <section
+      id="problema"
       style={{
         position: "relative",
         overflow: "hidden",

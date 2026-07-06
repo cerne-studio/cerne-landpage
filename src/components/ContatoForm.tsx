@@ -7,8 +7,11 @@ type Segment = typeof SEGMENTS[number];
 const PROCESSES = ["CRM / Clientes","Financeiro","Agenda","Dashboard","Tudo junto"] as const;
 type Process = typeof PROCESSES[number];
 
+const WHATSAPP_NUMBER = "5511999999999"; // número fictício para teste — trocar pelo número real antes de publicar
+
 export default function ContatoForm() {
   const id = useId();
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const [nome, setNome] = useState("");
   const [empresa, setEmpresa] = useState("");
   const [segment, setSegment] = useState<Segment | "">("");
@@ -24,7 +27,16 @@ export default function ContatoForm() {
     e.preventDefault();
     if (status !== "idle") return;
     setStatus("sending");
-    await new Promise(r => setTimeout(r, 1200));
+    const message = [
+      "Olá! Quero o diagnóstico gratuito da Cerne.",
+      "",
+      `Nome: ${nome}`,
+      `Empresa: ${empresa}`,
+      `Segmento: ${segment}`,
+      `WhatsApp: ${whatsapp}`,
+      `Necessidade: ${procs.length ? procs.join(", ") : "Não especificado"}`,
+    ].join("\n");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
     setStatus("done");
   }
 
@@ -32,7 +44,6 @@ export default function ContatoForm() {
     width: "100%",
     padding: "13px 16px",
     borderRadius: 10,
-    border: "1px solid rgba(255,255,255,0.12)",
     background: "rgba(255,255,255,0.06)",
     color: "#F3F1ED",
     fontFamily: "var(--font-geist-sans)",
@@ -68,10 +79,10 @@ export default function ContatoForm() {
             </svg>
           </div>
           <h2 className="font-display" style={{ fontWeight:700, fontSize:"var(--display-sm)", letterSpacing:"-0.03em", color:"#F3F1ED", marginBottom:14 }}>
-            Recebemos!
+            Quase lá!
           </h2>
           <p className="font-sans" style={{ fontSize:16, lineHeight:1.65, color:"#A8A095" }}>
-            Nossa equipe vai entrar em contato em até 1 dia útil para agendar a conversa de diagnóstico.
+            Abrimos o WhatsApp com sua mensagem pronta. É só enviar para a gente começar a conversa.
           </p>
         </div>
       </section>
@@ -106,6 +117,7 @@ export default function ContatoForm() {
               placeholder="Seu nome"
               value={nome}
               onChange={e => setNome(e.target.value)}
+              className="cerne-input"
               style={inputStyle}
             />
           </div>
@@ -119,6 +131,7 @@ export default function ContatoForm() {
               placeholder="Nome do negócio"
               value={empresa}
               onChange={e => setEmpresa(e.target.value)}
+              className="cerne-input"
               style={inputStyle}
             />
           </div>
@@ -130,6 +143,7 @@ export default function ContatoForm() {
               required
               value={segment}
               onChange={e => setSegment(e.target.value as Segment)}
+              className="cerne-input"
               style={{ ...inputStyle, appearance: "none", cursor:"pointer", color: segment ? "#F3F1ED" : "#6B6760" }}
             >
               <option value="" disabled style={{ color:"#6B6760", background:"#141210" }}>Selecione o segmento</option>
@@ -148,6 +162,7 @@ export default function ContatoForm() {
               placeholder="(00) 00000-0000"
               value={whatsapp}
               onChange={e => setWhatsapp(e.target.value)}
+              className="cerne-input"
               style={inputStyle}
             />
           </div>
@@ -185,20 +200,12 @@ export default function ContatoForm() {
           <button
             type="submit"
             disabled={status === "sending"}
+            className="btn-primary"
             style={{
               marginTop:8,
-              padding:"15px 28px",
-              borderRadius:10,
-              border:"none",
-              background:"var(--accent)",
-              color:"#fff",
-              fontFamily:"var(--font-geist-sans)",
-              fontSize:15,
-              fontWeight:600,
+              width:"100%",
               cursor: status === "sending" ? "wait" : "pointer",
               opacity: status === "sending" ? 0.7 : 1,
-              transition:"opacity 200ms, transform 120ms",
-              letterSpacing:"-0.01em",
             }}
           >
             {status === "sending" ? "Enviando…" : "Quero o meu diagnóstico gratuito"}
@@ -206,6 +213,10 @@ export default function ContatoForm() {
 
           <p className="font-sans" style={{ fontSize:12, color:"#6B6760", textAlign:"center", margin:0 }}>
             Sem compromisso. Sem cartão. Só uma conversa.
+          </p>
+          <p className="font-sans" style={{ fontSize:11.5, color:"#6B6760", textAlign:"center", margin:0, lineHeight:1.5 }}>
+            Ao enviar, você concorda com o uso dos seus dados para esse contato, conforme nossa{" "}
+            <a href={`${basePath}/privacidade`} style={{ color:"#A8A095", textDecoration:"underline" }}>Política de Privacidade</a>.
           </p>
         </form>
       </div>

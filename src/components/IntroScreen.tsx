@@ -18,7 +18,7 @@ export default function IntroScreen() {
     const fallback = setTimeout(() => {
       sessionStorage.setItem('intro-seen', '1')
       setPhase('done')
-    }, 8000)
+    }, 9500)
 
     v.play().catch(() => {
       clearTimeout(fallback)

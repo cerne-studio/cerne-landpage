@@ -143,9 +143,9 @@ export default function SystemFinance({ mobile }: { mobile: boolean }) {
 
   return (
     <MonitorFrame url="financeiro.cerne.app">
-      <div style={ mobile ? { display:"flex", flexDirection:"column", minHeight:300 } : { display:"grid", gridTemplateColumns:"150px 1fr", minHeight:348 }}>
+      <div style={ mobile ? { display:"flex", flexDirection:"column", height:400 } : { display:"grid", gridTemplateColumns:"150px 1fr", height:348 }}>
         <NavBar items={items} mobile={mobile} />
-        <div style={{ padding: mobile ? 14 : 18 }}>
+        <div style={{ padding: mobile ? 14 : 18, overflowY:"auto", minHeight:0 }}>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:12, marginBottom:16 }}>
             {kpis.map((k,i) => (
               <div key={i} style={{ border:"1px solid rgba(0,0,0,0.07)", borderRadius:11, padding:"13px 14px" }}>

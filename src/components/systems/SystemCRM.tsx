@@ -95,9 +95,9 @@ export default function SystemCRM({ mobile }: { mobile: boolean }) {
 
   return (
     <MonitorFrame url="cliente360.cerne.app">
-      <div style={ mobile ? { display:"flex", flexDirection:"column", minHeight:300 } : { display:"grid", gridTemplateColumns:"150px 1fr", minHeight:348 }}>
+      <div style={ mobile ? { display:"flex", flexDirection:"column", height:400 } : { display:"grid", gridTemplateColumns:"150px 1fr", height:348 }}>
         <NavBar brand="Cliente360" accent={A} items={items} mobile={mobile} />
-        <div style={{ padding: mobile ? 14 : 18 }}>
+        <div style={{ padding: mobile ? 14 : 18, overflowY:"auto", minHeight:0 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:6 }}>
             <span className="font-display" style={{ fontWeight:600, fontSize:16, color:"#1A1917" }}>Negócios</span>
             <span className="font-sans" style={{ fontSize:12.5, fontWeight:600, color:"#fff", background:A, padding:"6px 13px", borderRadius:8, cursor:"pointer" }}>+ Novo</span>

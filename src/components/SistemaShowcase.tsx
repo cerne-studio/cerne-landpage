@@ -12,10 +12,12 @@ const SYSTEMS = [
   { name: "Dashboard",           tag: "Os números do negócio reunidos num só painel, prontos para decidir.", accent: "#F5A030" },
 ];
 
+const MOBILE_H = 480;
+
 function tf(offset: number, isMobile: boolean): React.CSSProperties {
   if (isMobile) {
-    if (offset === 0) return { position:"relative", width:"100%", opacity:1, transform:"none", zIndex:2, transition:"opacity 300ms var(--ease-out)" };
-    return { position:"absolute", top:0, left:0, width:"100%", opacity:0, pointerEvents:"none", zIndex:1, transition:"opacity 300ms var(--ease-out)" };
+    if (offset === 0) return { position:"absolute", inset:0, opacity:1, zIndex:2, transition:"opacity 300ms var(--ease-out)", overflow:"hidden" };
+    return { position:"absolute", inset:0, opacity:0, pointerEvents:"none", zIndex:1, transition:"opacity 300ms var(--ease-out)" };
   }
   const a = Math.abs(offset);
   const sign = Math.sign(offset);
@@ -39,8 +41,6 @@ function tf(offset: number, isMobile: boolean): React.CSSProperties {
 export default function SistemaShowcase() {
   const [active, setActive]   = useState(0);
   const [isMob, setIsMob]     = useState(false);
-  const pausedRef             = useRef(false);
-  const resumeRef             = useRef<ReturnType<typeof setTimeout>>();
   const txRef                 = useRef<number | null>(null);
 
   useEffect(() => {
@@ -50,23 +50,8 @@ export default function SistemaShowcase() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const pause = useCallback(() => {
-    pausedRef.current = true;
-    if (resumeRef.current) clearTimeout(resumeRef.current);
-    resumeRef.current = setTimeout(() => { pausedRef.current = false; }, 6000);
-  }, []);
-
   const goTo = useCallback((i: number) => {
-    pause();
     setActive(Math.max(0, Math.min(SYSTEMS.length-1, i)));
-  }, [pause]);
-
-  // Auto-cycle every 4s
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (!pausedRef.current) setActive(a => (a+1) % SYSTEMS.length);
-    }, 4000);
-    return () => clearInterval(timer);
   }, []);
 
   // Touch swipe
@@ -111,35 +96,39 @@ export default function SistemaShowcase() {
 
       {/* Header */}
       <div style={{ position:"relative", maxWidth:"var(--container)", margin:"0 auto", padding:"0 var(--gutter)", textAlign:"center", marginBottom:"clamp(32px,5vw,56px)" }}>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+        <div style={{ display: "flex", flexDirection:"column", alignItems: "center", gap: 8, marginBottom: 20 }}>
           <div
             className="font-sans"
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: 6,
-              padding: "4px 12px",
+              gap: 8,
+              padding: "9px 22px",
               borderRadius: "var(--radius-pill)",
-              fontSize: 12,
-              fontWeight: 500,
-              letterSpacing: "0.025em",
-              background: "color-mix(in srgb, var(--mint) 10%, transparent)",
+              fontSize: 14,
+              fontWeight: 600,
+              letterSpacing: "0.01em",
+              background: "color-mix(in srgb, var(--mint) 12%, transparent)",
               color: "var(--mint)",
-              border: "1px solid color-mix(in srgb, var(--mint) 20%, transparent)",
+              border: "1px solid color-mix(in srgb, var(--mint) 24%, transparent)",
             }}
           >
             <span
               aria-hidden
               style={{
-                width: 6,
-                height: 6,
+                width: 7,
+                height: 7,
                 borderRadius: "50%",
                 background: "var(--mint)",
+                flexShrink: 0,
                 animation: "cernePulse 1.8s var(--ease-out) infinite",
               }}
             />
-            Demo interativa — explore à vontade
+            Simulação interativa — explore à vontade
           </div>
+          <span className="font-sans" style={{ fontSize:12, color:"rgba(168,160,149,0.75)", letterSpacing:"0.02em" }}>
+            Os dados são fictícios e representam um ambiente de demonstração
+          </span>
         </div>
         <span className="font-sans" style={{ fontSize:12, fontWeight:600, textTransform:"uppercase", letterSpacing:"0.1em", color:"#3DAA7E" }}>NA PRÁTICA</span>
         <h2 className="font-display" style={{ fontWeight:700, fontSize:"var(--display-sm)", letterSpacing:"-0.03em", lineHeight:1.1, color:"#F3F1ED", maxWidth:"16ch", margin:"14px auto 0" }}>
@@ -153,7 +142,7 @@ export default function SistemaShowcase() {
         onTouchEnd={onTouchEnd}
         style={
           isMob
-            ? { position:"relative", width:"100%", maxWidth:"100vw", padding:"0 16px", marginBottom:24, overflow:"hidden" }
+            ? { position:"relative", width:"100%", maxWidth:"100vw", padding:"0 16px", marginBottom:24, overflow:"hidden", height:MOBILE_H }
             : { position:"relative", height:"clamp(370px,50vw,540px)", perspective:"2100px", marginBottom:40 }
         }
       >

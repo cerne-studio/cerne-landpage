@@ -21,9 +21,9 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "cerne sistemas — Software que faz sentido para o seu negócio",
+  title: "cerne — Sistema sob medida pro seu jeito de trabalhar",
   description:
-    "CRM, financeiro, agenda e dashboard num só lugar, sem complicação. Sistemas sob medida para pequenas e médias empresas.",
+    "CRM, financeiro, agenda e dashboard construídos do zero para o seu negócio — não o contrário. Sistemas sob medida para pequenas e médias empresas.",
 };
 
 export default function RootLayout({

@@ -19,20 +19,21 @@ const PROFILES = [
     headline: "Você tem planilha, WhatsApp e caderninho — e nada conversa.",
     body: "São três sistemas que ninguém atualiza direito. Você perde histórico de clientes, erra cobrança e paga pra fechar o mês.",
     solution: "O cerne reúne tudo: clientes, finanças e agenda num único lugar que a equipe realmente usa.",
-    accent: "#5B8EF5",
+    accent: "var(--slate)",
   },
   {
     label: "Perfil C",
     headline: "Você já tentou software — e jogou fora depois de 2 semanas.",
     body: "Sistemas genéricos pedem configuração que não acaba, treinamento que nunca fica pronto, e ainda custam caro.",
     solution: "O cerne é montado para o seu negócio antes de você abrir. Você começa usando no primeiro dia.",
-    accent: "#F5A030",
+    accent: "var(--amber)",
   },
 ] as const;
 
 export default function Profiles() {
   return (
     <section
+      id="perfis"
       style={{
         position: "relative",
         background: "var(--surface-page)",
