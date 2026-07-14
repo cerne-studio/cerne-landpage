@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     icon: `${basePath}/favicon.ico`,
     apple: `${basePath}/apple-touch-icon.png`,
   },
+  other: {
+    "facebook-domain-verification": "v7cci8crqcn43bcfej9t12ct29ri0u",
+  },
 };
 
 export default function RootLayout({
