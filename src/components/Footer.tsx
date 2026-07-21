@@ -119,20 +119,6 @@ export default function Footer() {
         </span>
       </div>
 
-      <div
-        style={{
-          maxWidth: "var(--container)",
-          margin: "clamp(16px,2vw,20px) auto 0",
-          padding: "0 var(--gutter)",
-          textAlign: "center",
-        }}
-      >
-        <p className="font-sans" style={{ fontSize: 11.5, color: "#4A4540", lineHeight: 1.6, margin: 0 }}>
-          MURILO RODRIGUES ABRAO — CNPJ 58.342.758/0001-98<br />
-          Rua Reuclydes da Cunha, 138, Apto 52, Gonzaga — Santos/SP, CEP 11.065-100<br />
-          (13) 99120-7337
-        </p>
-      </div>
     </footer>
   );
 }

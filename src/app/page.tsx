@@ -10,6 +10,7 @@ import Profiles from "@/components/Profiles";
 import Processo from "@/components/Processo";
 import Stats from "@/components/Stats";
 import ContatoForm from "@/components/ContatoForm";
+import Footer from "@/components/Footer";
 
 export default function Page() {
   return (
@@ -28,6 +29,7 @@ export default function Page() {
         <Stats />
         <ContatoForm />
       </main>
+      <Footer />
     </>
   );
 }
