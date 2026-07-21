@@ -103,7 +103,7 @@ export default function ContatoForm() {
             Vamos montar o sistema para o seu negócio.
           </h2>
           <p className="font-sans" style={{ fontSize:16, color:"#A8A095", marginTop:14, maxWidth:460, margin:"14px auto 0" }}>
-            Preencha abaixo e nossa equipe entra em contato em até 1 dia útil.
+            Preencha abaixo e nossa equipe entra em contato em até uma hora.
           </p>
         </div>
 
