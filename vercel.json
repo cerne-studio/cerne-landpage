@@ -4,6 +4,11 @@
       "source": "/agendar",
       "destination": "https://api.leadconnectorhq.com/widget/booking/OdPKGIqWHsqGMY3Pplnl",
       "permanent": false
+    },
+    {
+      "source": "/fale-com-a-gente",
+      "destination": "https://wa.me/5513974031355?text=Ol%C3%A1%2C%20vi%20o%20Instagram%20de%20voc%C3%AAs%20e%20quero%20entender%20mais%20como%20funciona%20a%20Cerne!",
+      "permanent": false
     }
   ]
 }
